@@ -2,13 +2,13 @@ package com.masroofy.model;
 
 import java.time.LocalDate;      //resource: https://www.w3schools.com/java/java_date.asp
 
-public class Expenses {
+public class Expense {
     private double amount;
     private Category category;
     private LocalDate timestamp;
     private int id;
 
-    public Expenses(double amount, Category category){
+    public Expense(double amount, Category category){
         this.amount = amount;
         this.category = category;
         this.timestamp = LocalDate.now();

@@ -1,7 +1,7 @@
 package com.masroofy;
 
 import com.masroofy.model.Category;
-import com.masroofy.model.Expenses;
+import com.masroofy.model.Expense;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,7 +26,7 @@ public class MainApp extends Application {
     public static void main(String[] args){
         //launch(args);
         Category c = new Category("food");
-        Expenses e = new Expenses(50, c);
+        Expense e = new Expense(50, c);
         System.out.println("The amount spent here is " + e.getAmount());
         System.out.println("The category here is " + e.getCategory());
         System.out.println("The date of the expense used here is " + e.getTimestamp());

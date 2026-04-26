@@ -49,6 +49,4 @@ public class BudgetCycle {
     public void getSafeDailyLimit(double limit){ //not correct
 
     }
-
-
 }

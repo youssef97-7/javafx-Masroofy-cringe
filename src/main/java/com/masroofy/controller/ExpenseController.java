@@ -14,23 +14,33 @@ public class ExpenseController {
     private ComboBox<String> inputcat;
 
 
-
     @FXML
-    public void initial(){
-        categoryBox.getItems().addAll("Food", "Transportation", "Utilities", "Shopping", "Healthcare","Other");
+    public void initial() {
+        categoryBox.getItems().addAll("Food", "Transportation", "Utilities", "Shopping", "Healthcare", "Other");
         categoryBox.setPromptText("Category");
         dailyLimit.setText("daily limit : 0.00");
         remainingAllowance.setText("remainingAllowance : 0.00");
 
     }
-    @FXML
-    public void handle_expenses(){
-        double amount = Double.parseDouble(inputamount.getText());
-        Category cat = new Category(inputcat.getTypeSelector());
-        Expense currentexpense = new Expense(amount,cat);
-        manager.addExpense(currentexpense);
-        inputamount.clear();
-        //nesbayan
-    }
 
+    @FXML
+    public void handle_expenses() {
+        try {
+            String text = inputamount.getText();
+            double amount = Double.parseDouble(text);
+            if (amount <= 0) {
+                throw new IllegalArgumentException("Amount must be +ve");
+            }
+            Category cat = new Category(inputcat.getValue());
+            Expense currentexpense = new Expense(amount, cat);
+            manager.addExpense(currentexpense);
+            inputamount.clear();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Input" + "Please enter a number");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid Amount" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred.");
+        }
+    }
 }

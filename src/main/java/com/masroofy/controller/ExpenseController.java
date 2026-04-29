@@ -5,22 +5,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class ExpenseController {
+    @FXML private ComboBox<String> categoryBox;
+    @FXML private Label dailyLimit;
+    @FXML private Label remainingAllowance;
+    @FXML  private TextField inputamount;
+    //@FXML private ExpenseManager manager = new ExpenseManager();  will run when we fix the constructor
+
+    @FXML private Button addExpenseButton;
+
     @FXML
-    private ComboBox<String> categoryBox;
-    private TextArea dailyLimit;
-    private TextArea remainingAllowance;
-    private TextField inputamount;
-    private ExpenseManager manager;
-    private ComboBox<String> inputcat;
+    private void handleButtonClick(){
+        System.out.println("Button was clicked");
+    }
 
 
     @FXML
-    public void initial() {
+    public void initialize  () {
         categoryBox.getItems().addAll("Food", "Transportation", "Utilities", "Shopping", "Healthcare", "Other");
         categoryBox.setPromptText("Category");
-        dailyLimit.setText("daily limit : 0.00");
-        remainingAllowance.setText("remainingAllowance : 0.00");
-
+        dailyLimit.setText("Daily Limit: 0.00");
+        remainingAllowance.setText("Remaining Allowance: 0.00");
     }
 
     @FXML
@@ -31,9 +35,9 @@ public class ExpenseController {
             if (amount <= 0) {
                 throw new IllegalArgumentException("Amount must be +ve");
             }
-            Category cat = new Category(inputcat.getValue());
+            Category cat = new Category(categoryBox.getValue());
             Expense currentexpense = new Expense(amount, cat);
-            manager.addExpense(currentexpense);
+            //manager.addExpense(currentexpense);
             inputamount.clear();
         } catch (NumberFormatException e) {
             System.out.println("Invalid Input" + "Please enter a number");

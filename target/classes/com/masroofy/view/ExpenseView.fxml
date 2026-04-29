@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="406.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.ExpenseController">
+    <children>
+        <Button fx:id="addExpenseButton" layoutX="62.0" layoutY="332.0" mnemonicParsing="false" text="Add Expense" textAlignment="CENTER" />
+        <ComboBox fx:id="categoryBox" layoutX="28.0" layoutY="273.0" prefWidth="150.0" promptText="Category" />
+        <TextField fx:id="inputamount" layoutX="29.0" layoutY="227.0" promptText="Add Amount" />
+      <Label fx:id="remainingAllowance" layoutX="26.0" layoutY="54.0" prefHeight="18.0" prefWidth="125.0"/>
+      <Label fx:id="dailyLimit" layoutX="26.0" layoutY="24.0" prefHeight="18.0" prefWidth="71.0"/>
+    </children>
+</AnchorPane>

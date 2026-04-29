@@ -1,17 +1,18 @@
 package com.masroofy.model;
 
+import java.time.LocalDate;
 import java.util.*;
 public class BudgetCycle {
     private int cycleId;
     private static int Counter = 0;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double totalAllowance;
     private double remainingAllowance;
     private double safeDailyLimit;
     private List<Expense> expenses;
 
-    public BudgetCycle(Date start, Date end, double allowance){
+    public BudgetCycle(LocalDate start, LocalDate end, double allowance){
         this.cycleId = ++Counter;
         this.startDate = start;
         this.endDate = end;
@@ -26,11 +27,11 @@ public class BudgetCycle {
         return this.cycleId;
     }
 
-    public Date getStartDate(){
+    public LocalDate getStartDate(){
         return this.startDate;
     }
 
-    public Date getEndDate(){
+    public LocalDate getEndDate(){
         return this.endDate;
     }
 

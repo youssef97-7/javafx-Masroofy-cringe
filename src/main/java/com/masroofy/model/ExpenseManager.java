@@ -5,7 +5,7 @@ import java.util.*;
 public class ExpenseManager {
     private BudgetCycle currentCycle;
     private List<Expense> expenses;
-    public ExpenseManager(BudgetCycle cycle) {
+    public ExpenseManager(BudgetCycle cycle) { // won't run unless we empty the constructor cause we  don't have a budgetcycle yet
         this.currentCycle = cycle;
         this.expenses = this.currentCycle.getExpenses();
     }

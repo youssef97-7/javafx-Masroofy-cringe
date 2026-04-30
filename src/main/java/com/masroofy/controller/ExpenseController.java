@@ -6,29 +6,22 @@ import javafx.scene.control.*;
 
 public class ExpenseController {
     @FXML private ComboBox<String> categoryBox;
-    @FXML private Label dailyLimit;
-    @FXML private Label remainingAllowance;
     @FXML  private TextField inputamount;
-    //@FXML private ExpenseManager manager = new ExpenseManager();  will run when we fix the constructor
-
     @FXML private Button addExpenseButton;
+    private ExpenseManager manager;
 
-    @FXML
-    private void handleButtonClick(){
-        System.out.println("Button was clicked");
+
+    public void setManager(ExpenseManager manager){
+        this.manager = manager;
     }
-
-
     @FXML
     public void initialize  () {
         categoryBox.getItems().addAll("Food", "Transportation", "Utilities", "Shopping", "Healthcare", "Other");
         categoryBox.setPromptText("Category");
-        dailyLimit.setText("Daily Limit: 0.00");
-        remainingAllowance.setText("Remaining Allowance: 0.00");
     }
 
     @FXML
-    public void handle_expenses() {
+    public void handleAddExpense() {
         try {
             String text = inputamount.getText();
             double amount = Double.parseDouble(text);
@@ -37,8 +30,9 @@ public class ExpenseController {
             }
             Category cat = new Category(categoryBox.getValue());
             Expense currentexpense = new Expense(amount, cat);
-            //manager.addExpense(currentexpense);
+            manager.addExpense(currentexpense);
             inputamount.clear();
+            categoryBox.setValue(null);
         } catch (NumberFormatException e) {
             System.out.println("Invalid Input" + "Please enter a number");
         } catch (IllegalArgumentException e) {

@@ -11,17 +11,12 @@
     <top>
         <AnchorPane prefHeight="89.0" prefWidth="724.0" BorderPane.alignment="CENTER">
             <children>
-                <!-- Category Filter -->
                 <ComboBox fx:id="comboCategory" layoutX="556.0" layoutY="27.0" prefWidth="150.0" promptText="Category" />
-
-                <!-- Keyword Search -->
                 <TextField fx:id="txtSearch" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="531.0" promptText="Search expenses...">
                     <font>
                         <Font name="Times New Roman" size="14.0" />
                     </font>
                 </TextField>
-
-                <!-- Clear Button -->
                 <Button layoutX="662.0" layoutY="68.0" mnemonicParsing="false" onAction="#clearFilters" text="Clear" />
             </children>
         </AnchorPane>

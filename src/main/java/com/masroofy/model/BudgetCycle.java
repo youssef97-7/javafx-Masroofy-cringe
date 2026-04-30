@@ -10,7 +10,7 @@ public class BudgetCycle {
     private double totalAllowance;
     private double remainingAllowance;
     private double safeDailyLimit;
-    private List<Expense> expenses;
+    private List<Expense> expenses = new ArrayList<>();
 
     public BudgetCycle(LocalDate start, LocalDate end, double allowance){
         this.cycleId = ++Counter;

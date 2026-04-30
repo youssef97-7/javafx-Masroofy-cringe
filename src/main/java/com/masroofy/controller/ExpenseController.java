@@ -4,6 +4,9 @@ import com.masroofy.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import static com.masroofy.controller.historyScreenController.display;
+import static com.masroofy.model.databaseManager.addExpense;
+
 public class ExpenseController {
     @FXML private ComboBox<String> categoryBox;
     @FXML  private TextField inputamount;
@@ -31,8 +34,10 @@ public class ExpenseController {
             Category cat = new Category(categoryBox.getValue());
             Expense currentexpense = new Expense(amount, cat);
             manager.addExpense(currentexpense);
+            addExpense(amount,cat);
             inputamount.clear();
             categoryBox.setValue(null);
+            display();
         } catch (NumberFormatException e) {
             System.out.println("Invalid Input" + "Please enter a number");
         } catch (IllegalArgumentException e) {

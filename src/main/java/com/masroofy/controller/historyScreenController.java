@@ -14,19 +14,21 @@ import java.util.stream.Collectors;
 
 public class historyScreenController {
     //Linking UI
-    @FXML private TableView<Expense> tableHistory;
+    @FXML private static TableView<Expense> tableHistory = new TableView<>();
     @FXML private TableColumn<Expense, LocalDate> colDate;
     @FXML private TableColumn<Expense, String> colCategory;
     @FXML private TableColumn<Expense, Double> colAmount;
     @FXML private TextField txtSearch;
     @FXML private ComboBox<String> comboCategory;
 
-    private ObservableList<Expense> transactionHistory;
+    public static ObservableList<Expense> transactionHistory;
     private String currentFilter = "";
     private String currentSortOrder = "Date";
 
     @FXML
     public void initialize() {
+        comboCategory.getItems().addAll("Food", "Transportation", "Utilities", "Shopping", "Healthcare", "Other");
+        comboCategory.setOnAction(e -> applyFilter(comboCategory.getValue()));
         colDate.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         colCategory.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategory())
@@ -35,12 +37,9 @@ public class historyScreenController {
 
         display();
 
-        txtSearch.textProperty().addListener((obs, oldVal, newVal) -> {
-            applyFilter(newVal);
-        });
     }
 
-    public void display() {
+    public static void display() {
         ArrayList<Expense> data = databaseManager.getAllExpenses();
         transactionHistory = FXCollections.observableArrayList(data);
         tableHistory.setItems(transactionHistory);
@@ -48,7 +47,7 @@ public class historyScreenController {
 
     public void applyFilter(String category) {
         this.currentFilter = category;
-        if (category == null || category.isEmpty()) {
+        if (category == null || category.equals("Category") || category.isEmpty()) {
             tableHistory.setItems(transactionHistory);
         } else {
             ObservableList<Expense> filtered = transactionHistory.stream()
@@ -87,8 +86,8 @@ public class historyScreenController {
 
     @FXML
     public void clearFilters() {
-        txtSearch.clear();
-        currentFilter = "";
+        currentFilter = "Category";
+        comboCategory.setValue("Category");
         display();
     }
 }

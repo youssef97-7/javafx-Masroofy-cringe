@@ -11,14 +11,14 @@ public class databaseManager {
     public static LocalDate startDate = LocalDate.of(2026,4,1);
     public static LocalDate endDate = LocalDate.of(2026,4,30);
 
-    public static void addExpense(int amount, String cat) {
-        allExpenses.add(new Expense(amount,new Category(cat)));
+    public static void addExpense(double amount, Category cat) {
+        allExpenses.add(new Expense(amount,cat));
     }
     public static void loadCycle() { //dummy data as there is still no database
-        addExpense(1500,"Entertainment");
-        addExpense(1000,"Entertainment");
-        addExpense(20000,"University Equipments");
-        addExpense(3000,"Health insurance");
+        addExpense(1500,new Category("Entertainment"));
+        addExpense(1000,new Category("Entertainment"));
+        addExpense(20000,new Category("University Equipments"));
+        addExpense(3000,new Category("Health insurance"));
     }
     public static ArrayList<Expense> getAllExpenses() {
         return allExpenses;

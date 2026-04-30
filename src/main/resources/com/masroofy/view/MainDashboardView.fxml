@@ -4,20 +4,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.masroofy.controller.MainController">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.MainController">
     <children>
         <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
 
-        <Separator />
-      <Label fx:id="dailyLimitLabel" layoutX="38.0" layoutY="34.0" text="Daily Limit: EGP 0.00">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="totalAllowanceLabel" layoutX="38.0" layoutY="58.0" prefHeight="18.0" prefWidth="146.0" text="Total Allowance: EGP 0.00 ">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
+        <Separator orientation="VERTICAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="350.0" />
+
+        <Label fx:id="dailyLimitLabel" layoutX="38.0" layoutY="34.0" text="Daily Limit: EGP 0.00">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="totalAllowanceLabel" layoutX="38.0" layoutY="58.0" prefHeight="18.0" prefWidth="146.0" text="Total Allowance: EGP 0.00 ">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Label>
+
+        <AnchorPane prefWidth="350.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <fx:include fx:id="historyScreenView" source="historyScreenView.fxml"
+                            AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            </children>
+        </AnchorPane>
+
     </children>
 </AnchorPane>

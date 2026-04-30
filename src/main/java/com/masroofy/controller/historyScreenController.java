@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 
 public class historyScreenController {
     //Linking UI
-    @FXML private static TableView<Expense> tableHistory = new TableView<>();
+    @FXML private TableView<Expense> tableHistory;
     @FXML private TableColumn<Expense, LocalDate> colDate;
     @FXML private TableColumn<Expense, String> colCategory;
     @FXML private TableColumn<Expense, Double> colAmount;
     @FXML private TextField txtSearch;
     @FXML private ComboBox<String> comboCategory;
 
-    public static ObservableList<Expense> transactionHistory;
+    public ObservableList<Expense> transactionHistory;
     private String currentFilter = "";
     private String currentSortOrder = "Date";
 
@@ -39,7 +39,7 @@ public class historyScreenController {
 
     }
 
-    public static void display() {
+    public void display() {
         ArrayList<Expense> data = databaseManager.getAllExpenses();
         transactionHistory = FXCollections.observableArrayList(data);
         tableHistory.setItems(transactionHistory);

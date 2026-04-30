@@ -14,6 +14,7 @@ public class MainController {
     @FXML  Label dailyLimitLabel;
     @FXML  Label totalAllowanceLabel;
     @FXML private ExpenseController expenseViewController;
+    @FXML private historyScreenController historyScreenViewController;
     private BudgetCycle budgetCycle;
     private BudgetCalculator budgetCalculator;
 
@@ -22,6 +23,10 @@ public class MainController {
         ExpenseManager manager = new ExpenseManager(budgetCycle);
         budgetCalculator = new BudgetCalculator(budgetCycle, manager);
         expenseViewController.setManager(manager);
+        expenseViewController.setOnUpdate(() -> {
+            historyScreenViewController.display();
+            updateDashboard();
+        });
         updateDashboard();
     }
 

@@ -6,9 +6,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
    <children>
+      <TextField fx:id="totalAllowance" layoutX="181.0" layoutY="136.0" promptText="Amount" />
       <DatePicker fx:id="startDate" layoutX="181.0" layoutY="200.0" promptText="Start Date" />
       <TextField fx:id="cycleLength" layoutX="181.0" layoutY="259.0" promptText="#of days (e.g. 15)" />
-      <TextField fx:id="totalAllowance" layoutX="181.0" layoutY="136.0" promptText="Amount" />
+
       <Label layoutX="154.0" layoutY="60.0" prefHeight="30.0" prefWidth="292.0" text="Welcome to Masroofy Cringe" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Black" size="20.0" />

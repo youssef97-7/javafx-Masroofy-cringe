@@ -84,10 +84,21 @@ public class historyScreenController {
         tableHistory.refresh();
     }
 
+    private void resetComboBox() {
+        comboCategory.setValue(null);
+        comboCategory.setButtonCell(new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(item == null ? "Category" : item);
+            }
+        });
+    }
+
     @FXML
     public void clearFilters() {
         currentFilter = "Category";
-        comboCategory.setValue("Category");
+        resetComboBox();
         display();
     }
 }

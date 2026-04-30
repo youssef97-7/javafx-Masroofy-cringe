@@ -27,6 +27,17 @@ public class ExpenseController {
         categoryBox.setPromptText("Category");
     }
 
+    private void resetComboBox() {
+        categoryBox.setValue(null);
+        categoryBox.setButtonCell(new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(item == null ? "Category" : item);
+            }
+        });
+    }
+
     @FXML
     public void handleAddExpense() {
         try {
@@ -44,14 +55,13 @@ public class ExpenseController {
             if (onUpdate != null) {
                 onUpdate.run();
             }
-            categoryBox.setValue(null);
-            categoryBox.setPromptText("Category");
+            resetComboBox();
         } catch (NumberFormatException e) {
             System.out.println("Invalid Input" + "Please enter a number");
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid Amount" + e.getMessage());
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred.");
+            e.printStackTrace();
         }
     }
 }

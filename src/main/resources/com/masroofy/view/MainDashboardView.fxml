@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.masroofy.controller.MainController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.masroofy.controller.MainController">
     <children>
-        <fx:include source="ExpenseView.fxml" />
+        <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
+
+        <Separator />
+      <Label fx:id="dailyLimitLabel" layoutX="38.0" layoutY="34.0" text="Daily Limit: EGP 0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalAllowanceLabel" layoutX="38.0" layoutY="58.0" prefHeight="18.0" prefWidth="146.0" text="Total Allowance: EGP 0.00 ">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

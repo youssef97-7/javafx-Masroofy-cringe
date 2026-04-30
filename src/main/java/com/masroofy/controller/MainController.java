@@ -14,16 +14,19 @@ public class MainController {
     @FXML  Label dailyLimitLabel;
     @FXML  Label totalAllowanceLabel;
     @FXML private ExpenseController expenseViewController;
+    @FXML private historyScreenController historyScreenViewController;
     private BudgetCycle budgetCycle;
-    private ExpenseManager manager;
     private BudgetCalculator budgetCalculator;
 
     public void initializeData(double allowance, LocalDate start, LocalDate end){
         budgetCycle = new BudgetCycle(start, end, allowance);
-        manager = new ExpenseManager(budgetCycle);
+        ExpenseManager manager = new ExpenseManager(budgetCycle);
         budgetCalculator = new BudgetCalculator(budgetCycle, manager);
         expenseViewController.setManager(manager);
-
+        expenseViewController.setOnUpdate(() -> {
+            historyScreenViewController.display();
+            updateDashboard();
+        });
         updateDashboard();
     }
 

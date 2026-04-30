@@ -21,12 +21,14 @@ public class historyScreenController {
     @FXML private TextField txtSearch;
     @FXML private ComboBox<String> comboCategory;
 
-    private ObservableList<Expense> transactionHistory;
+    public ObservableList<Expense> transactionHistory;
     private String currentFilter = "";
     private String currentSortOrder = "Date";
 
     @FXML
     public void initialize() {
+        comboCategory.getItems().addAll("Food", "Transportation", "Utilities", "Shopping", "Healthcare", "Other");
+        comboCategory.setOnAction(e -> applyFilter(comboCategory.getValue()));
         colDate.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         colCategory.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategory())
@@ -35,9 +37,6 @@ public class historyScreenController {
 
         display();
 
-        txtSearch.textProperty().addListener((obs, oldVal, newVal) -> {
-            applyFilter(newVal);
-        });
     }
 
     public void display() {
@@ -48,7 +47,7 @@ public class historyScreenController {
 
     public void applyFilter(String category) {
         this.currentFilter = category;
-        if (category == null || category.isEmpty()) {
+        if (category == null || category.equals("Category") || category.isEmpty()) {
             tableHistory.setItems(transactionHistory);
         } else {
             ObservableList<Expense> filtered = transactionHistory.stream()
@@ -85,10 +84,21 @@ public class historyScreenController {
         tableHistory.refresh();
     }
 
+    private void resetComboBox() {
+        comboCategory.setValue(null);
+        comboCategory.setButtonCell(new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(item == null ? "Category" : item);
+            }
+        });
+    }
+
     @FXML
     public void clearFilters() {
-        txtSearch.clear();
-        currentFilter = "";
+        currentFilter = "Category";
+        resetComboBox();
         display();
     }
 }

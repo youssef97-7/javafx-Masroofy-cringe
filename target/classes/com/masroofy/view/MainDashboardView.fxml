@@ -4,28 +4,78 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.MainController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.masroofy.controller.MainController">
     <children>
-        <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
 
-        <Separator orientation="VERTICAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="350.0" />
+        <!-- nav -->
+        <VBox spacing="10.0" style="-fx-padding: 20; -fx-background-color: #f0f0f0;"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              prefWidth="160.0">
+            <Label text="Nav" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <Separator />
+            <Button text="Dashboard" maxWidth="Infinity" mnemonicParsing="false" />
+            <Button text="Settings"  maxWidth="Infinity" mnemonicParsing="false" />
+            <Button text="Analytics" maxWidth="Infinity" mnemonicParsing="false" />
+            <Button text="Export"    maxWidth="Infinity" mnemonicParsing="false" />
+            <Button text="About"     maxWidth="Infinity" mnemonicParsing="false" />
+        </VBox>
 
-        <Label fx:id="dailyLimitLabel" layoutX="38.0" layoutY="34.0" text="Daily Limit: EGP 0.00">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-        <Label fx:id="totalAllowanceLabel" layoutX="38.0" layoutY="58.0" prefHeight="18.0" prefWidth="146.0" text="Total Allowance: EGP 0.00 ">
-            <font>
-                <Font size="10.0" />
-            </font>
-        </Label>
+        <!-- separator between nav and center -->
+        <Separator orientation="VERTICAL"
+                   AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0"/>
 
-        <AnchorPane prefWidth="350.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <!-- center feeh labels, expense logic, recurring logic -->
+        <AnchorPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="350.0">
+            <children>
+                <StackPane AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0" prefHeight="160.0">
+                    <VBox alignment="CENTER" spacing="10.0">
+                        <Label fx:id="dailyLimitLabel" text="Daily Limit: EGP 0.00">
+                            <font><Font name="System Bold" size="36.0" /></font>
+                        </Label>
+                        <Label fx:id="totalAllowanceLabel" text="Total Allowance: EGP 0.00">
+                            <font><Font size="22.0" /></font>
+                        </Label>
+                    </VBox>
+                </StackPane>
+
+                <!-- separator mabein labels w expense logic -->
+                <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="160.0"/>
+
+                <!-- middle expense form centered -->
+                <StackPane AnchorPane.topAnchor="161.0" AnchorPane.bottomAnchor="160.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
+                </StackPane>
+
+                <!-- separator expense form w recurring -->
+                <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.bottomAnchor="160.0"/>
+
+                <!-- bottom recurring section placeholder -->
+                <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0" prefHeight="160.0">
+                    <Label text="Recurring (coming soon)"
+                           style="-fx-text-fill: #aaaaaa; -fx-font-size: 14px;" />
+                </StackPane>
+
+            </children>
+        </AnchorPane>
+
+        <!-- separator mabei center w history -->
+        <Separator orientation="VERTICAL"
+                   AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="350.0"/>
+
+        <!-- right: history panel -->
+        <AnchorPane prefWidth="350.0"
+                    AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <fx:include fx:id="historyScreenView" source="historyScreenView.fxml"
                             AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
             </children>
         </AnchorPane>
 

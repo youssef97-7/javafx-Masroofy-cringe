@@ -2,11 +2,26 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="406.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.ExpenseController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.masroofy.controller.ExpenseController">
     <children>
-        <Button fx:id="addExpenseButton" layoutX="62.0" layoutY="332.0" mnemonicParsing="false" text="Add Expense" textAlignment="CENTER" onAction="#handleAddExpense" />
-        <ComboBox fx:id="categoryBox" layoutX="28.0" layoutY="273.0" prefWidth="150.0" promptText="Category" />
-        <TextField fx:id="inputamount" layoutX="29.0" layoutY="227.0" promptText="Add Amount" />
+
+        <StackPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <VBox spacing="15.0" maxWidth="300.0" alignment="CENTER">
+                    <Label text="Add Expense">
+                        <font><Font name="System Bold" size="18.0" /></font>
+                    </Label>
+                    <TextField fx:id="inputamount" prefWidth="250.0" promptText="Amount" />
+                    <ComboBox fx:id="categoryBox" prefWidth="250.0" promptText="Category" />
+                    <Button fx:id="addExpenseButton" prefWidth="250.0" text="Add Expense"
+                            mnemonicParsing="false" onAction="#handleAddExpense" />
+                </VBox>
+            </children>
+        </StackPane>
+
     </children>
 </AnchorPane>

@@ -17,12 +17,13 @@ public class MainController {
     @FXML private historyScreenController historyScreenViewController;
     private BudgetCycle budgetCycle;
     private BudgetCalculator budgetCalculator;
+    private ExpenseManager expenseManager;
 
     public void initializeData(double allowance, LocalDate start, LocalDate end){
         budgetCycle = new BudgetCycle(start, end, allowance);
-        ExpenseManager manager = new ExpenseManager(budgetCycle);
-        budgetCalculator = new BudgetCalculator(budgetCycle, manager);
-        expenseViewController.setManager(manager);
+        expenseManager = new ExpenseManager(budgetCycle);
+        budgetCalculator = new BudgetCalculator(budgetCycle, expenseManager);
+        expenseViewController.setManager(expenseManager);
         expenseViewController.setOnUpdate(() -> {
             historyScreenViewController.display();
             updateDashboard();
@@ -32,10 +33,11 @@ public class MainController {
 
     private void updateDashboard(){
         double dailyLimit = budgetCalculator.CalcDailyLimit();
-        double totalAllowance = budgetCycle.getTotalAllowance();
+        double totalSpent = expenseManager.getTotalSpent();
+        double remainingAllowance = budgetCycle.getTotalAllowance() - totalSpent;
 
         dailyLimitLabel.setText(String.format("Daily Limit: EGP%.2f", dailyLimit));
-        totalAllowanceLabel.setText(String.format("Total Allowance: EGP%.2f", totalAllowance));
+        totalAllowanceLabel.setText(String.format("Total Allowance: EGP%.2f", remainingAllowance));
     }
 
 }

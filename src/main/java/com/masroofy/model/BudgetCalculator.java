@@ -33,9 +33,11 @@ public class BudgetCalculator {
 
     // change the datatype of start date and end date in the budget cycle class
     // removed the parameters of the getRemainingDays
+    // el khalfia made today get the current date intialized by the constructor so
+    // we can implement a forward day button
     public int getRemainingDays()
     {
-        LocalDate today = LocalDate.now();
+        LocalDate today = budgetCycle.getCurrentDate();
         LocalDate endDate = budgetCycle.getEndDate();
         int days = (int) ChronoUnit.DAYS.between(today, endDate) + 1;
         return Math.max(days, 0);

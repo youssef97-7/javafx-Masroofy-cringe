@@ -1,6 +1,9 @@
 package com.masroofy.model;
 
-import java.time.LocalDate;      //resource: https://www.w3schools.com/java/java_date.asp
+import java.time.LocalDate;
+//resource: https://www.w3schools.com/java/java_date.asp
+
+import com.masroofy.model.BudgetCycle;
 
 public class Expense {
     private double amount;
@@ -12,7 +15,7 @@ public class Expense {
     public Expense(double amount, Category category) {
         this.amount = amount;
         this.category = category;
-        this.timestamp = LocalDate.now();
+        this.timestamp = BudgetCycle.getCurrentDate();
         this.id = ++counter;             //for now its fine, but its better to make a static counter or UUID to ensure uniqueness
     }
 

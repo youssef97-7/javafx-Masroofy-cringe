@@ -38,4 +38,12 @@ public class MainController {
         totalAllowanceLabel.setText(String.format("Total Allowance: EGP%.2f", totalAllowance));
     }
 
+    @FXML
+    private void handleforwardoneday(){
+        if(budgetCycle != null){
+            budgetCycle.advanceonday();
+            updateDashboard();
+            System.out.println("Time Travel! New simulated date: " + budgetCycle.getCurrentDate());
+        }
+    }
 }

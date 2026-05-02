@@ -11,13 +11,33 @@ public class BudgetCycle {
     private double remainingAllowance;
     private double safeDailyLimit;
     private List<Expense> expenses = new ArrayList<>();
+    //adding a forward day button
+    private static LocalDate currentDate;
+    private int addeddays=0;
 
     public BudgetCycle(LocalDate start, LocalDate end, double allowance){
         this.cycleId = ++Counter;
         this.startDate = start;
         this.endDate = end;
         this.totalAllowance = allowance;
+        currentDate = LocalDate.now();
     }
+
+    // el khalfia functions for forwarding a day
+    public static LocalDate getCurrentDate(){
+        return currentDate;
+    }
+
+    public void advanceonday(){
+        currentDate = currentDate.plusDays(1);
+        this.addeddays++;
+    }
+
+    public int getAddeddays(){
+        return this.addeddays;
+    }
+
+
 
     public List<Expense> getExpenses(){
         return expenses;

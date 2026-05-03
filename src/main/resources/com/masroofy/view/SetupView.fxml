@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
+<StackPane styleClass="setup-screen" stylesheets="@styles.css" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
    <children>
 
       <VBox alignment="CENTER" maxWidth="600.0" spacing="40.0">
@@ -42,7 +42,7 @@
                </rowConstraints>
             </GridPane>
 
-            <Button onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Next">
+            <Button styleClass="action-button" onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Next">
                <font><Font name="System Bold" size="18.0" /></font>
             </Button>
          </children>

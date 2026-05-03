@@ -8,7 +8,7 @@
 
         <ComboBox fx:id="comboCategory" promptText="Category" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
 
-        <Button mnemonicParsing="false" onAction="#clearFilters" text="Clear" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+        <Button styleClass="action-button" mnemonicParsing="false" onAction="#clearFilters" text="Clear" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
 
         <TableView fx:id="tableHistory" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
             <columns>

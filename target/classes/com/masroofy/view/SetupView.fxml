@@ -4,33 +4,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
+<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
    <children>
-      <TextField fx:id="totalAllowance" layoutX="181.0" layoutY="136.0" promptText="Amount" />
-      <DatePicker fx:id="startDate" layoutX="181.0" layoutY="200.0" promptText="Start Date" />
-      <TextField fx:id="cycleLength" layoutX="181.0" layoutY="259.0" promptText="#of days (e.g. 15)" />
 
-      <Label layoutX="154.0" layoutY="60.0" prefHeight="30.0" prefWidth="292.0" text="Welcome to Masroofy Cringe" textAlignment="CENTER">
-         <font>
-            <Font name="Segoe UI Black" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="140.0" prefHeight="18.0" prefWidth="150.0" text="Enter Cycle's Allowance: ">
-         <font>
-            <Font name="Segoe UI Black" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="31.0" layoutY="204.0" prefHeight="18.0" prefWidth="143.0" text="Enter Cycle's Start Date:">
-         <font>
-            <Font name="Segoe UI Black" size="12.0" />
-         </font>
-      </Label>
-      <Button layoutX="168.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleButtonNext" prefHeight="26.0" prefWidth="264.0" text="Next" />
+      <!-- 1. More spacing in the VBox -->
+      <VBox alignment="CENTER" spacing="40.0" maxWidth="600.0">
+         <children>
+            <!-- 2. Larger Title -->
+            <Label text="Welcome to Masroofy Cringe">
+               <font><Font name="Segoe UI Black" size="32.0" /></font>
+            </Label>
 
-      <Label layoutX="31.0" layoutY="263.0" prefHeight="18.0" prefWidth="131.0" text="Enter Cycle's Length:">
-         <font>
-            <Font name="Segoe UI Black" size="12.0" />
-         </font>
-      </Label>
+            <!-- 3. Larger vertical gaps in the form -->
+            <GridPane hgap="20.0" vgap="25.0" alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" minWidth="200.0" />
+                  <ColumnConstraints minWidth="250.0" />
+               </columnConstraints>
+               <children>
+                  <!-- 4. Larger Font for Labels -->
+                  <Label text="Enter Cycle's Allowance: ">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+
+                  <!-- 5. Taller Input Fields -->
+                  <TextField fx:id="totalAllowance" promptText="Amount" prefHeight="45.0" GridPane.columnIndex="1" />
+
+                  <Label text="Enter Cycle's Start Date:" GridPane.rowIndex="1">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+                  <DatePicker fx:id="startDate" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" />
+
+                  <Label text="Enter Cycle's Length:" GridPane.rowIndex="2">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+                  <TextField fx:id="cycleLength" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+
+            <!-- 6. Larger Button -->
+            <Button onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Next">
+               <font><Font name="System Bold" size="18.0" /></font>
+            </Button>
+         </children>
+      </VBox>
+
    </children>
-</AnchorPane>
+</StackPane>

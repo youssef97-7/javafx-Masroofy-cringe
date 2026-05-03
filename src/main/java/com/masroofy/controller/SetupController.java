@@ -38,6 +38,8 @@ public class SetupController {
 
         stage.getScene().setRoot(dashboard);
         stage.setTitle("Dashboard");
+
+        stage.setMaximized(true);
     }
 
 }

@@ -1,14 +1,13 @@
 package com.masroofy.controller;
 
-import com.masroofy.model.BudgetCalculator;
-import com.masroofy.model.BudgetCycle;
-import com.masroofy.model.ExpenseManager;
+import com.masroofy.model.*;
 import javafx.fxml.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.*;
+import java.util.ArrayList;
 
 public class MainController {
     @FXML  Label dailyLimitLabel;
@@ -24,6 +23,10 @@ public class MainController {
         expenseManager = new ExpenseManager(budgetCycle);
         budgetCalculator = new BudgetCalculator(budgetCycle, expenseManager);
         expenseViewController.setManager(expenseManager);
+        ArrayList<Expense> pastExpenses = databaseManager.getAllExpenses();
+        for(Expense e: pastExpenses){
+            expenseManager.addExpense(e);
+        }
         expenseViewController.setOnUpdate(() -> {
             historyScreenViewController.display();
             updateDashboard();

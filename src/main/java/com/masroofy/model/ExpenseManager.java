@@ -29,8 +29,7 @@ public class ExpenseManager {
         expenses.removeIf( expense ->expense.getId() == expenseId);
     }
 
-    public void getExpensesByCategory(String categoryType) { // broken needs to be written fully with correct return type
-        //forgot how to do it
+    public List<Expense> getExpensesByCategory(String categoryType) {
         List<Expense> result = new ArrayList<Expense>();
         for(int i = 0; i < expenses.size(); ++i){
             Expense current = expenses.get(i);
@@ -38,6 +37,7 @@ public class ExpenseManager {
                 result.add(current);
             }
         }
+        return result;
     }
 
     public double getTotalSpentOnCategory(String categoryType){

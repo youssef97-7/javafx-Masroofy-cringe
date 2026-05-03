@@ -7,27 +7,22 @@
 <StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
    <children>
 
-      <!-- 1. More spacing in the VBox -->
       <VBox alignment="CENTER" spacing="40.0" maxWidth="600.0">
          <children>
-            <!-- 2. Larger Title -->
             <Label text="Welcome to Masroofy Cringe">
                <font><Font name="Segoe UI Black" size="32.0" /></font>
             </Label>
 
-            <!-- 3. Larger vertical gaps in the form -->
             <GridPane hgap="20.0" vgap="25.0" alignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" minWidth="200.0" />
                   <ColumnConstraints minWidth="250.0" />
                </columnConstraints>
                <children>
-                  <!-- 4. Larger Font for Labels -->
                   <Label text="Enter Cycle's Allowance: ">
                      <font><Font name="Segoe UI Black" size="16.0" /></font>
                   </Label>
 
-                  <!-- 5. Taller Input Fields -->
                   <TextField fx:id="totalAllowance" promptText="Amount" prefHeight="45.0" GridPane.columnIndex="1" />
 
                   <Label text="Enter Cycle's Start Date:" GridPane.rowIndex="1">
@@ -42,7 +37,6 @@
                </children>
             </GridPane>
 
-            <!-- 6. Larger Button -->
             <Button onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Next">
                <font><Font name="System Bold" size="18.0" /></font>
             </Button>

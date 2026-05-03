@@ -12,9 +12,8 @@
             <Separator />
 
             <Button fx:id="btnDashboard" maxWidth="Infinity" mnemonicParsing="false" onAction="#showDashboard" text="Dashboard" />
-
             <Button maxWidth="Infinity" mnemonicParsing="false" text="Settings" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" text="Analytics" />
+            <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" text="Analytics" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="Export" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="About" />
             <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" text="advance -&gt;">

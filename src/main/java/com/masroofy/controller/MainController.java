@@ -19,6 +19,7 @@ public class MainController {
     @FXML private StackPane contentArea;
     @FXML private AnchorPane dashboardPane;
     @FXML private Button btnDashboard;
+    @FXML private Button btnAnalytics;
     private BudgetCycle budgetCycle;
     private BudgetCalculator budgetCalculator;
     private ExpenseManager expenseManager;
@@ -60,5 +61,18 @@ public class MainController {
     private void showDashboard() {
         contentArea.getChildren().setAll(dashboardPane);
         updateDashboard();
+    }
+    @FXML private void showAnalytics() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/masroofy/view/AnalyticsView.fxml"));
+            javafx.scene.Node analyticsNode = loader.load();
+
+            AnalyticsController analyticsController = loader.getController();
+            analyticsController.setExpenseManager(this.expenseManager);
+            contentArea.getChildren().setAll(analyticsNode);
+        } catch (Exception e) {
+            System.out.println("Error loading Analytics View!");
+            e.printStackTrace();
+        }
     }
 }

@@ -37,6 +37,8 @@ public class SetupController {
                 int days = Integer.parseInt(cycleStr);
                 LocalDate end = start.plusDays(days);
 
+                databaseManager.updateCycle(allowance, start, end);
+
                 FXMLLoader loader = new FXMLLoader(
                         getClass().getResource("/com/masroofy/view/MainDashboardView.fxml"));
                 Parent dashboard = loader.load();

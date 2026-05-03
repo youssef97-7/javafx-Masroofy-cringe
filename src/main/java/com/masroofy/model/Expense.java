@@ -19,6 +19,10 @@ public class Expense {
         this.id = ++counter;             //for now its fine, but its better to make a static counter or UUID to ensure uniqueness
     }
 
+    public void setTimeStamp(LocalDate ld){
+        this.timestamp = ld;
+    }
+
     public int getId() {
         return this.id;
     }

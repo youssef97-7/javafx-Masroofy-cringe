@@ -58,7 +58,7 @@ public class ExpenseController {
                Expense currentexpense = new Expense(amount, cat);
 
                manager.addExpense(currentexpense);
-               databaseManager.addExpense(amount, cat);
+               databaseManager.addExpense(currentexpense);
                inputamount.clear();
                if (onUpdate != null) {
                    onUpdate.run();

@@ -7,13 +7,13 @@
 <StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
    <children>
 
-      <VBox alignment="CENTER" spacing="40.0" maxWidth="600.0">
+      <VBox alignment="CENTER" maxWidth="600.0" spacing="40.0">
          <children>
             <Label text="Welcome to Masroofy Cringe">
                <font><Font name="Segoe UI Black" size="32.0" /></font>
             </Label>
 
-            <GridPane hgap="20.0" vgap="25.0" alignment="CENTER">
+            <GridPane alignment="CENTER" hgap="20.0" vgap="25.0">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" minWidth="200.0" />
                   <ColumnConstraints minWidth="250.0" />
@@ -23,18 +23,23 @@
                      <font><Font name="Segoe UI Black" size="16.0" /></font>
                   </Label>
 
-                  <TextField fx:id="totalAllowance" promptText="Amount" prefHeight="45.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="totalAllowance" prefHeight="45.0" promptText="10000" GridPane.columnIndex="1" />
 
                   <Label text="Enter Cycle's Start Date:" GridPane.rowIndex="1">
                      <font><Font name="Segoe UI Black" size="16.0" /></font>
                   </Label>
-                  <DatePicker fx:id="startDate" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" />
+                  <DatePicker fx:id="startDate" maxWidth="Infinity" prefHeight="45.0" promptText="24/06/2025" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                   <Label text="Enter Cycle's Length:" GridPane.rowIndex="2">
                      <font><Font name="Segoe UI Black" size="16.0" /></font>
                   </Label>
-                  <TextField fx:id="cycleLength" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="cycleLength" prefHeight="45.0" promptText="30" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
             </GridPane>
 
             <Button onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Next">

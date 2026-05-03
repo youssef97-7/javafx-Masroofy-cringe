@@ -1,5 +1,5 @@
 package com.masroofy.controller;
-
+import com.dustinredmond.fxalert.FXAlert;
 import com.masroofy.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,5 +41,4 @@ public class SetupController {
 
         stage.setMaximized(true);
     }
-
 }

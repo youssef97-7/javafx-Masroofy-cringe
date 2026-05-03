@@ -1,5 +1,6 @@
 package com.masroofy.controller;
 
+import com.dustinredmond.fxalert.FXAlert;
 import com.masroofy.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,25 +42,38 @@ public class ExpenseController {
     @FXML
     public void handleAddExpense() {
         try {
-            String text = inputamount.getText();
-            double amount = Double.parseDouble(text);
-            if (amount <= 0) {
-                throw new IllegalArgumentException("Amount must be +ve");
-            }
-            Category cat = new Category(categoryBox.getValue());
-            Expense currentexpense = new Expense(amount, cat);
-            manager.addExpense(currentexpense);
-            databaseManager.addExpense(amount, cat);
+           int count = 0;
+           String text = inputamount.getText();
+           String catValue = categoryBox.getValue();
 
-            inputamount.clear();
-            if (onUpdate != null) {
-                onUpdate.run();
-            }
-            resetComboBox();
+           if(text!= null && !text.isEmpty()) count++;
+           if(catValue!= null)count++;
+
+           if(count == 2){
+               double amount = Double.parseDouble(text);
+               if(amount <= 0){
+                   FXAlert.error().withText("Error", "Invalid Amount", "Amount must be a positive number.").show();
+               }
+               Category cat = new Category(catValue);
+               Expense currentexpense = new Expense(amount, cat);
+
+               manager.addExpense(currentexpense);
+               databaseManager.addExpense(amount, cat);
+               inputamount.clear();
+               if (onUpdate != null) {
+                   onUpdate.run();
+               }
+               resetComboBox();
+           }else{
+               FXAlert.error().withText("Error", "Invalid Inputs",
+                       "Please fill in both input fields to continue <3").show();
+           }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid Input" + "Please enter a number");
+            FXAlert.error().withText("Error", "Invalid Inputs",
+                    "Please enter a number").show();
         } catch (IllegalArgumentException e) {
-            System.out.println("Invalid Amount" + e.getMessage());
+            FXAlert.error().withText("Error", "Invalid Inputs",
+                    "Invalid Amount").show();
         } catch (Exception e) {
             e.printStackTrace();
         }

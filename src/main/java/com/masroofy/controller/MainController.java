@@ -75,4 +75,18 @@ public class MainController {
             e.printStackTrace();
         }
     }
+    @FXML private Button btnToggleTheme;
+    @FXML private AnchorPane rootPane;
+    private boolean isDark = false;
+    @FXML
+    private void handleToggleTheme() {
+        isDark = !isDark;
+        if (isDark) {
+            rootPane.getStyleClass().add("dark");
+            btnToggleTheme.setText("☀️ Light Mode");
+        } else {
+            rootPane.getStyleClass().remove("dark");
+            btnToggleTheme.setText("🌙 Dark Mode");
+        }
+    }
 }

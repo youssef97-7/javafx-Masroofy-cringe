@@ -22,23 +22,40 @@ public class SetupController {
 
     @FXML
     private void handleButtonNext() throws Exception{
-        double allowance = Double.parseDouble(totalAllowance.getText());
-        LocalDate start = startDate.getValue();
-        LocalDate end = start.plusDays(Integer.parseInt(cycleLength.getText()));
+        try {
+            int count = 0;
+            String allowanceStr = totalAllowance.getText();
+            String cycleStr = cycleLength.getText();
+            LocalDate start = startDate.getValue();
 
+            if (allowanceStr != null && !allowanceStr.isBlank()) count++;
+            if (cycleStr != null && !cycleStr.isBlank()) count++;
+            if (start != null) count++;
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/masroofy/view/MainDashboardView.fxml")
-        );
+            if (count == 3) {
+                double allowance = Double.parseDouble(allowanceStr);
+                int days = Integer.parseInt(cycleStr);
+                LocalDate end = start.plusDays(days);
 
-        Parent dashboard = loader.load();
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/com/masroofy/view/MainDashboardView.fxml"));
+                Parent dashboard = loader.load();
 
-        MainController controller = loader.getController();
-        controller.initializeData(allowance, start, end);
+                MainController controller = loader.getController();
+                controller.initializeData(allowance, start, end);
+                stage.getScene().setRoot(dashboard);
+                stage.setTitle("Dashboard");
+                stage.setMaximized(true);
+            } else {
+                FXAlert.error().withText("Setup Error", "Incomplete Data",
+                        "Please ensure Allowance, Cycle Length, and Start Date are all filled out!").show();
+            }
 
-        stage.getScene().setRoot(dashboard);
-        stage.setTitle("Dashboard");
-
-        stage.setMaximized(true);
+        } catch (NumberFormatException e) {
+            FXAlert.error().withText("Error", "Invalid Number", "Please enter valid numeric values for allowance and cycle length.").show();
+        } catch (Exception e) {
+            // Handle FXML loading errors
+            e.printStackTrace();
+        }
     }
 }

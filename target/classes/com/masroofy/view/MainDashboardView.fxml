@@ -4,20 +4,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.MainController">
+<AnchorPane fx:id="rootPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.MainController">
     <children>
 
-        <VBox prefWidth="160.0" spacing="10.0" style="-fx-padding: 20; -fx-background-color: #f0f0f0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefWidth="160.0" spacing="10.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Nav" />
             <Separator />
 
             <Button fx:id="btnDashboard" maxWidth="Infinity" mnemonicParsing="false" onAction="#showDashboard" text="Dashboard" />
-
+            <Button fx:id="btnToggleTheme" maxWidth="Infinity" styleClass="theme-toggle" mnemonicParsing="false" onAction="#handleToggleTheme" text="🌙 Dark Mode" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="Settings" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="Analytics" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="Export" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="About" />
-            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" text="advance -&gt;">
+            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" styleClass="action-button" text="advance -&gt;">
                 <font>
                     <Font name="Bell MT" size="14.0" />
                 </font>
@@ -43,7 +43,7 @@
 
                         <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0" />
 
-                        <StackPane AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
+                        <StackPane  AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
                             <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
                         </StackPane>
 

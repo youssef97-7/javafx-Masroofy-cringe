@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import java.time.*;
 import java.util.ArrayList;
 
+
 public class MainController {
     @FXML  Label dailyLimitLabel;
     @FXML  Label totalAllowanceLabel;
@@ -20,6 +21,7 @@ public class MainController {
     @FXML private AnchorPane dashboardPane;
     @FXML private Button btnDashboard;
     @FXML private Button btnAnalytics;
+    @FXML private AnchorPane exportPane;
     private BudgetCycle budgetCycle;
     private BudgetCalculator budgetCalculator;
     private ExpenseManager expenseManager;
@@ -60,6 +62,12 @@ public class MainController {
     @FXML
     private void showDashboard() {
         contentArea.getChildren().setAll(dashboardPane);
+        updateDashboard();
+    }
+    @FXML
+    private void showExport(){
+        exportPane.setVisible(true);
+        contentArea.getChildren().setAll(exportPane);
         updateDashboard();
     }
     @FXML private void showAnalytics() {

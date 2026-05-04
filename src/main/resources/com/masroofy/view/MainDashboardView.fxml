@@ -15,7 +15,7 @@
             <Button fx:id="btnToggleTheme" maxWidth="Infinity" styleClass="theme-toggle" mnemonicParsing="false" onAction="#handleToggleTheme" text="🌙 Dark Mode" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="Settings" />
             <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" text="Analytics" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" text="Export" />
+            <Button fx:id="btnExport" maxWidth="Infinity" mnemonicParsing="false" onAction="#showExport" text="Export" />
             <Button maxWidth="Infinity" mnemonicParsing="false" text="About" />
             <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" styleClass="action-button" text="advance -&gt;">
                 <font>
@@ -53,6 +53,9 @@
                             <Label style="-fx-text-fill: #aaaaaa; -fx-font-size: 14px;" text="Recurring (coming soon)" />
                         </StackPane>
                     </children>
+                </AnchorPane>
+                <AnchorPane fx:id="exportPane" visible="false" style="-fx-background-color: -content-bg;">
+                    <fx:include fx:id="exportView" source="ExportView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                 </AnchorPane>
             </children>
         </StackPane>

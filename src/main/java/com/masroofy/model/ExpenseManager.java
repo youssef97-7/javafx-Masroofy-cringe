@@ -1,11 +1,11 @@
 package com.masroofy.model;
 
 import java.util.*;
-//hello github
+
 public class ExpenseManager {
     private BudgetCycle currentCycle;
     private List<Expense> expenses;
-    public ExpenseManager(BudgetCycle cycle) { // won't run unless we empty the constructor cause we  don't have a budgetcycle yet
+    public ExpenseManager(BudgetCycle cycle) {
         this.currentCycle = cycle;
         this.expenses = this.currentCycle.getExpenses();
     }

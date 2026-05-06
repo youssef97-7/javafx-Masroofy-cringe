@@ -28,7 +28,7 @@ public class ExpenseManager {
      */
     public void addExpense(Expense expense) { //should be boolean but i forgot why
         expenses.add(expense);
-        currentCycle.setTodayRemainingLimit(expense.getAmount());
+        currentCycle.reduceTodayRemainingLimit(expense.getAmount());
 
     }
 

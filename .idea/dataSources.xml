@@ -22,5 +22,12 @@
       <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="masroofy.db [2]" uuid="de87f374-5a38-4fe5-bd29-0a467b58fca9">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Dell\IdeaProjects\javafx-Masroofy-cringe\masroofy.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

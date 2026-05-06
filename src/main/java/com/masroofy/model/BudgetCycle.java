@@ -58,6 +58,8 @@ public class BudgetCycle {
     public void advanceonday(){
         currentDate = currentDate.plusDays(1);
         this.addeddays++;
+        // call function that recalculates the safe daily limit
+
     }
 
     /**
@@ -74,6 +76,10 @@ public class BudgetCycle {
     }
 
     public void setTodayRemainingLimit(double amount) {
+        this.todayRemainingLimit = amount;
+    }
+
+    public void reduceTodayRemainingLimit(double amount) {
         this.todayRemainingLimit = Math.max(this.todayRemainingLimit - amount, 0);
     }
 

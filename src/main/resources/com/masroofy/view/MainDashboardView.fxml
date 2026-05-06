@@ -16,7 +16,7 @@
             <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showSettings" style="-fx-text-fill: white;" text="Settings" />
             <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" style="-fx-text-fill: white;" text="Analytics" />
             <Button fx:id="btnExport" maxWidth="Infinity" mnemonicParsing="false" onAction="#showExport" style="-fx-text-fill: white;" text="Export" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" style="-fx-text-fill: white;" text="About" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAbout" style="-fx-text-fill: white;" text="About" />
 
             <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" styleClass="action-button" style="-fx-text-fill: white;" text="advance -&gt;">
                 <font>

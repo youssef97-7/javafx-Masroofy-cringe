@@ -59,6 +59,7 @@ public class MainController {
             updateDashboard();
         });
         updateDashboard();
+        historyScreenViewController.display();
     }
 
     /**
@@ -151,7 +152,7 @@ public class MainController {
 
             AnalyticsController analyticsController = loader.getController();
             analyticsController.setExpenseManager(this.expenseManager);
-            
+
             applyCurrentTheme(analyticsNode);
             contentArea.getChildren().setAll(analyticsNode);
         } catch (Exception e) {
@@ -160,8 +161,22 @@ public class MainController {
         }
     }
 
-/**
- * Toggles the application's visual theme between Light Mode and Dark Mode
+    @FXML
+    private void showAbout() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/masroofy/view/AboutView.fxml"));
+            javafx.scene.Node aboutNode = loader.load();
+
+            applyCurrentTheme(aboutNode);
+            contentArea.getChildren().setAll(aboutNode);
+        } catch (Exception e) {
+            System.out.println("Error loading About View!");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+    * Toggles the application's visual theme between Light Mode and Dark Mode
  * by dynamically applying or removing the corresponding CSS style class
  * from the root layout pane and the currently active content node.
  */

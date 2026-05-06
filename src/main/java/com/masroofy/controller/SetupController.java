@@ -8,6 +8,15 @@ import javafx.scene.*;
 import javafx.stage.*;
 import java.time.*;
 
+/**
+ * Controller class responsible for managing the initial setup and configuration screen.
+ * It captures the user's baseline financial parameters (total allowance, start date,
+ * and cycle length), validates the input, and transitions the application to the
+ * main dashboard upon successful setup.
+ *
+ * @author Youssef Hassib
+ * @version 1.0
+ */
 public class SetupController {
     @FXML TextField totalAllowance;
     @FXML DatePicker startDate;
@@ -16,10 +25,25 @@ public class SetupController {
 
     private Stage stage;
 
+    /**
+     * Injects the primary JavaFX Stage into the controller.
+     * This is necessary so the controller can swap out the current setup scene
+     * for the main dashboard scene once configuration is complete.
+     *
+     * @param stage The primary stage (window) of the JavaFX application.
+     */
     public void setStage(Stage stage){
         this.stage = stage;
     }
 
+    /**
+     * Handles the event triggered when the user attempts to proceed past the setup screen.
+     * It validates that all required fields are filled and contain correct data types.
+     * If valid, it calculates the budget cycle's end date, persists this data to the database,
+     * loads the Main Dashboard view, and switches the active scene.
+     *
+     * @throws Exception If an error occurs while locating or loading the MainDashboardView.fxml file.
+     */
     @FXML
     private void handleButtonNext() throws Exception{
         try {

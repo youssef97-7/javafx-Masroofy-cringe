@@ -13,17 +13,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * Controller class responsible for managing the analytics and dashboard view.
+ * This class processes expense data to populate visual charts, including a
+ * pie chart for category breakdowns and a bar chart for daily expense totals.
+ *
+ * @author Mohamed Elwan
+ * @version 1.0
+ */
 public class AnalyticsController {
     @FXML private PieChart categoryPieChart;
     @FXML private BarChart<String, Number> dailyBarChart;
 
     private ExpenseManager expenseManager;
+
+    /**
+     * Injects the ExpenseManager dependency into the controller and triggers
+     * the initial data loading process for the charts.
+     *
+     * @param expenseManager The centralized ExpenseManager containing the application's expense data.
+     */
     public void setExpenseManager(ExpenseManager expenseManager) {
         this.expenseManager = expenseManager;
         loadChartData();
     }
 
+    /**
+     * Clears the current chart data and recalculates expense totals.
+     * Aggregates expenses by category for the pie chart and by date for the
+     * bar chart, then updates the UI elements with the newly processed data.
+     */
     private void loadChartData() {
         categoryPieChart.getData().clear();
         dailyBarChart.getData().clear();

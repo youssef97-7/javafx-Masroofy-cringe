@@ -1,0 +1,130 @@
+[
+  {
+    "amount": 500.0,
+    "category": {
+      "type": "Healthcare"
+    },
+    "timestamp": "2026-05-03",
+    "id": 132
+  },
+  {
+    "amount": 400.0,
+    "category": {
+      "type": "Food"
+    },
+    "timestamp": "2026-05-03",
+    "id": 133
+  },
+  {
+    "amount": 900.0,
+    "category": {
+      "type": "Shopping"
+    },
+    "timestamp": "2026-05-03",
+    "id": 134
+  },
+  {
+    "amount": 800.0,
+    "category": {
+      "type": "Utilities"
+    },
+    "timestamp": "2026-05-05",
+    "id": 135
+  },
+  {
+    "amount": 500.0,
+    "category": {
+      "type": "Utilities"
+    },
+    "timestamp": "2026-05-04",
+    "id": 136
+  },
+  {
+    "amount": 49.0,
+    "category": {
+      "type": "Transportation"
+    },
+    "timestamp": "2026-05-05",
+    "id": 137
+  },
+  {
+    "amount": 7000.0,
+    "category": {
+      "type": "Healthcare"
+    },
+    "timestamp": "2026-05-04",
+    "id": 138
+  },
+  {
+    "amount": 1234.0,
+    "category": {
+      "type": "Transportation"
+    },
+    "timestamp": "2026-05-05",
+    "id": 139
+  },
+  {
+    "amount": 7777.0,
+    "category": {
+      "type": "Healthcare"
+    },
+    "timestamp": "2026-05-06",
+    "id": 140
+  },
+  {
+    "amount": 5.0E13,
+    "category": {
+      "type": "Food"
+    },
+    "timestamp": "2026-06-09",
+    "id": 141
+  },
+  {
+    "amount": 3.33333333333E11,
+    "category": {
+      "type": "Shopping"
+    },
+    "timestamp": "2026-06-09",
+    "id": 142
+  },
+  {
+    "amount": 4.4444444444444444E23,
+    "category": {
+      "type": "Transportation"
+    },
+    "timestamp": "2026-06-10",
+    "id": 143
+  },
+  {
+    "amount": 5.5555555555555555E22,
+    "category": {
+      "type": "Shopping"
+    },
+    "timestamp": "2026-06-11",
+    "id": 144
+  },
+  {
+    "amount": 1.0E17,
+    "category": {
+      "type": "Shopping"
+    },
+    "timestamp": "2026-06-12",
+    "id": 145
+  },
+  {
+    "amount": 1.0E19,
+    "category": {
+      "type": "Food"
+    },
+    "timestamp": "2026-06-12",
+    "id": 146
+  },
+  {
+    "amount": 1.0E23,
+    "category": {
+      "type": "Food"
+    },
+    "timestamp": "2026-06-12",
+    "id": 147
+  }
+]

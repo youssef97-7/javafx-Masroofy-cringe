@@ -187,10 +187,7 @@
     -fx-effect: dropshadow(gaussian, -main-color-glow, 6, 0, 0, 0);
 }
 
-/* ============================================================
-   COMBO BOXES
-   ============================================================ */
-.combo-box {
+.combo-box, .choice-box {
     -fx-background-color: -input-bg;
     -fx-border-color: -input-border;
     -fx-border-radius: 6px;
@@ -199,15 +196,21 @@
     -fx-font-size: 13px;
 }
 
-.combo-box:focused,
-.combo-box:showing {
+.combo-box:focused, .combo-box:showing,
+.choice-box:focused, .choice-box:showing {
     -fx-border-color: -main-color;
 }
 
-.combo-box .list-cell {
+.combo-box .list-cell, .choice-box .label {
     -fx-text-fill: -text-primary;
-    -fx-background-color: -input-bg;
-    -fx-padding: 4px 8px;
+    -fx-background-color: transparent;
+}
+
+.combo-box > .arrow-button > .arrow,
+.choice-box > .open-button > .arrow,
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: -text-primary;
+    -fx-background-insets: 0;
 }
 
 .combo-box-popup .list-view {
@@ -235,9 +238,70 @@
     -fx-border-color: -main-color;
 }
 
-.date-picker .text-field {
+.date-picker > .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-primary;
     -fx-border-color: transparent;
     -fx-effect: none;
+}
+
+/* Internal calendar icon */
+.date-picker .arrow-button .arrow {
+    -fx-background-color: -text-primary;
+}
+
+/* DatePicker Popup (Calendar) */
+.date-picker-popup {
+    -fx-background-color: -content-bg;
+    -fx-border-color: -content-border;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0, 0, 8);
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: -content-bg-alt;
+}
+
+.date-picker-popup > .month-year-pane > .label {
+    -fx-text-fill: -text-primary;
+}
+
+.date-picker-popup > .calendar-grid {
+    -fx-background-color: -content-bg;
+}
+
+.date-picker-popup > .calendar-grid > .day-cell {
+    -fx-text-fill: -text-primary;
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup > .calendar-grid > .day-name-cell {
+    -fx-text-fill: -main-color;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > .calendar-grid > .day-cell:hover {
+    -fx-background-color: -main-color-tint;
+}
+
+.date-picker-popup > .calendar-grid > .today {
+    -fx-text-fill: -main-color;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > .calendar-grid > .selected {
+    -fx-background-color: -main-color;
+    -fx-text-fill: #ffffff;
+}
+
+.date-picker-popup > .calendar-grid > .previous-month,
+.date-picker-popup > .calendar-grid > .next-month {
+    -fx-text-fill: -text-muted;
+}
+
+/* Navigation buttons in calendar */
+.date-picker-popup > .month-year-pane > .left-arrow-button > .left-arrow,
+.date-picker-popup > .month-year-pane > .right-arrow-button > .right-arrow {
+    -fx-background-color: -text-primary;
 }
 
 /* ============================================================
@@ -402,12 +466,52 @@
     -fx-effect: dropshadow(gaussian, -main-color-glow, 10, 0, 0, 4);
 }
 
+
 .setup-screen .button:hover { -fx-background-color: -main-color-dark; }
 .setup-screen .button:pressed { -fx-background-color: -main-color-darker; -fx-translate-y: 1px; }
 
 /* ============================================================
    SEPARATORS & SCROLLBARS & MISC
    ============================================================ */
+.label {
+    -fx-text-fill: -text-primary;
+}
+
+.text {
+    -fx-fill: -text-primary;
+}
+
+/* Chart Styling */
+.chart-title {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.axis-label {
+    -fx-text-fill: -text-label;
+}
+
+.axis {
+    -fx-tick-label-fill: -text-muted;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: -text-primary;
+}
+
+.chart-plot-background {
+    -fx-background-color: -content-bg-alt;
+}
+
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: -content-border;
+}
+
 .separator .line {
     -fx-border-color: -content-border;
     -fx-border-width: 1px 0 0 0;

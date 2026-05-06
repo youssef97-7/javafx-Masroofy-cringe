@@ -33,7 +33,9 @@ public class MainController {
     private BudgetCycle budgetCycle;
     private BudgetCalculator budgetCalculator;
     private ExpenseManager expenseManager;
-
+    @FXML private Button btnToggleTheme;
+    @FXML private AnchorPane rootPane;
+    private boolean isDark = false;
     /**
      * Initializes the core application data and sets up the dependencies between
      * models and controllers. It also loads existing expense history from the database
@@ -91,9 +93,41 @@ public class MainController {
      */
     @FXML
     private void showDashboard() {
+        applyCurrentTheme(dashboardPane);
         contentArea.getChildren().setAll(dashboardPane);
         updateDashboard();
     }
+
+    @FXML
+    private void showSettings() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/masroofy/view/SettingsView.fxml"));
+            javafx.scene.Node settingsNode = loader.load();
+
+            SettingsController settingsController = loader.getController();
+            settingsController.setInitialData(budgetCycle.getStartDate(), budgetCycle.getEndDate(), budgetCycle.getTotalAllowance());
+            
+            settingsController.setBackToDashboardHandler(this::showDashboard);
+            settingsController.setOnCycleUpdatedHandler(() -> {
+                BudgetCycle updated = databaseManager.getCycleData();
+                if (updated != null) {
+                    initializeData(updated.getTotalAllowance(), updated.getStartDate(), updated.getEndDate());
+                }
+            });
+            settingsController.setOnClearAllHandler(() -> {
+                initializeData(0, LocalDate.now(), LocalDate.now());
+                showDashboard();
+            });
+
+            applyCurrentTheme(settingsNode);
+
+            contentArea.getChildren().setAll(settingsNode);
+        } catch (Exception e) {
+            System.out.println("Error loading Settings View!");
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Switches the main content area to display the Export view, allowing the user
      * to save their transaction history to external files.
@@ -101,6 +135,7 @@ public class MainController {
     @FXML
     private void showExport(){
         exportPane.setVisible(true);
+        applyCurrentTheme(exportPane);
         contentArea.getChildren().setAll(exportPane);
         updateDashboard();
     }
@@ -116,30 +151,48 @@ public class MainController {
 
             AnalyticsController analyticsController = loader.getController();
             analyticsController.setExpenseManager(this.expenseManager);
+            
+            applyCurrentTheme(analyticsNode);
             contentArea.getChildren().setAll(analyticsNode);
         } catch (Exception e) {
             System.out.println("Error loading Analytics View!");
             e.printStackTrace();
         }
     }
-    @FXML private Button btnToggleTheme;
-    @FXML private AnchorPane rootPane;
-    private boolean isDark = false;
 
-    /**
-     * Toggles the application's visual theme between Light Mode and Dark Mode
-     * by dynamically applying or removing the corresponding CSS style class
-     * from the root layout pane.
-     */
+/**
+ * Toggles the application's visual theme between Light Mode and Dark Mode
+ * by dynamically applying or removing the corresponding CSS style class
+ * from the root layout pane and the currently active content node.
+ */
     @FXML
     private void handleToggleTheme() {
         isDark = !isDark;
-        if (isDark) {
-            rootPane.getStyleClass().add("dark");
-            btnToggleTheme.setText("Light Mode");
-        } else {
-            rootPane.getStyleClass().remove("dark");
-            btnToggleTheme.setText("Dark Mode");
+
+        applyCurrentTheme(rootPane);
+        btnToggleTheme.setText(isDark ? "Light Mode" : "Dark Mode");
+
+        // Apply only to the currently visible page in the content area
+        if (!contentArea.getChildren().isEmpty()) {
+            applyCurrentTheme(contentArea.getChildren().get(0));
         }
     }
-}
+
+    /**
+     * Applies the current theme class (dark) to a given node based on the isDark state.
+    */
+    private void applyCurrentTheme(javafx.scene.Node node) {
+        if (node == null) return;
+        String themeClass = "dark";
+        if (isDark) {
+            if (!node.getStyleClass().contains(themeClass)) {
+                node.getStyleClass().add(themeClass);
+            }
+        } else {
+            node.getStyleClass().remove(themeClass);
+        }
+
+        // Force a CSS pass to ensure variables are re-evaluated and applied
+        node.applyCss();
+    }
+    }

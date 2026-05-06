@@ -8,16 +8,17 @@
     <children>
 
         <VBox prefWidth="160.0" spacing="10.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Nav" />
+            <Label style="-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold;" text="Nav" />
             <Separator />
 
-            <Button fx:id="btnDashboard" maxWidth="Infinity" mnemonicParsing="false" onAction="#showDashboard" text="Dashboard" />
-            <Button fx:id="btnToggleTheme" maxWidth="Infinity" styleClass="theme-toggle" mnemonicParsing="false" onAction="#handleToggleTheme" text="🌙 Dark Mode" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" text="Settings" />
-            <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" text="Analytics" />
-            <Button fx:id="btnExport" maxWidth="Infinity" mnemonicParsing="false" onAction="#showExport" text="Export" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" text="About" />
-            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" styleClass="action-button" text="advance -&gt;">
+            <Button fx:id="btnDashboard" maxWidth="Infinity" mnemonicParsing="false" onAction="#showDashboard" style="-fx-text-fill: white;" text="Dashboard" />
+            <Button fx:id="btnToggleTheme" maxWidth="Infinity" styleClass="theme-toggle" mnemonicParsing="false" onAction="#handleToggleTheme" style="-fx-text-fill: white;" text="🌙 Dark Mode" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showSettings" style="-fx-text-fill: white;" text="Settings" />
+            <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" style="-fx-text-fill: white;" text="Analytics" />
+            <Button fx:id="btnExport" maxWidth="Infinity" mnemonicParsing="false" onAction="#showExport" style="-fx-text-fill: white;" text="Export" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" style="-fx-text-fill: white;" text="About" />
+
+            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" styleClass="action-button" style="-fx-text-fill: white;" text="advance -&gt;">
                 <font>
                     <Font name="Bell MT" size="14.0" />
                 </font>

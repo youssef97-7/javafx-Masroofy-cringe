@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.AboutController">
+   <children>
+      <ScrollPane fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox spacing="30.0">
+               <padding>
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+               </padding>
+               <children>
+                  <VBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Label style="-fx-font-size: 48px; -fx-text-fill: -main-color; -fx-font-weight: bold;" text="Masroofy" />
+                        <Label styleClass="text-muted" text="A lightweight personal finance manager for students." />
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Version: v1.0.0 (Sophomore SWE Edition)" />
+                              <Label text="|" />
+                              <Label fx:id="buildDateLabel" text="[Build Date]" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <Separator />
+
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Engineering Specs" />
+                        <GridPane hgap="20.0" vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="120.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Core Engine:" GridPane.rowIndex="0" />
+                              <Label text="Java 21 / OpenJFX 17" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                              
+                              <Label text="Storage:" GridPane.rowIndex="1" />
+                              <Label text="SQLite Database" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              
+                              <Label text="Architecture:" GridPane.rowIndex="2" />
+                              <Label text="Model-View-Controller (MVC)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              
+                              <Label text="Dependencies:" GridPane.rowIndex="3" />
+                              <Label text="GSON, SQLite JDBC, FXAlert" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+
+                  <Separator />
+
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Developer Credits" />
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Developers: Mohamed Elwan, Youssef Hassib, Mohamed Khalifa, and Mahmoud Sherif" />
+                              <Label text="Institution: Cairo University, Faculty of Computers and AI" />
+                              <Label text="Course: Software Engineering - Year 2" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+
+                  <Separator />
+
+                  <HBox spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleOpenGitHub" styleClass="action-button" text="GitHub Repository" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

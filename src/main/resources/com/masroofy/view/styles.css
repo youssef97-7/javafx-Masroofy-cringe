@@ -523,6 +523,15 @@
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button { -fx-background-color: transparent; -fx-padding: 2px; }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 .coming-soon {
     -fx-text-fill: -text-muted;
     -fx-font-size: 13px;

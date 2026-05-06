@@ -192,7 +192,6 @@ public class MainController {
             node.getStyleClass().remove(themeClass);
         }
 
-        // Force a CSS pass to ensure variables are re-evaluated and applied
         node.applyCss();
     }
     }

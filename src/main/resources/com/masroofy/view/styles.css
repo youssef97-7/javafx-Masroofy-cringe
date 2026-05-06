@@ -246,7 +246,7 @@
 }
 
 /* Internal calendar icon */
-.date-picker > .arrow-button > .arrow {
+.date-picker .arrow-button .arrow {
     -fx-background-color: -text-primary;
 }
 
@@ -465,6 +465,7 @@
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, -main-color-glow, 10, 0, 0, 4);
 }
+
 
 .setup-screen .button:hover { -fx-background-color: -main-color-dark; }
 .setup-screen .button:pressed { -fx-background-color: -main-color-darker; -fx-translate-y: 1px; }

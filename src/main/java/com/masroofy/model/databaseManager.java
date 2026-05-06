@@ -13,8 +13,17 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Manages all database operations for the Masroofy application.
+ * Handles SQLite connection, table initialization, CRUD operations for expenses
+ * and budget cycles, and multi-format data export (CSV, XML, JSON).
+ */
 public class databaseManager {
 
+    /**
+     * Sets up the local SQLite database and creates the necessary tables
+     * (budget_cycle and expenses) if they do not already exist.
+     */
     private static Connection connection() throws SQLException {
         String url = "jdbc:sqlite:masroofy.db";
         return DriverManager.getConnection(url);
@@ -44,6 +53,11 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Persists a new expense record to the database.
+     *
+     * @param ex The Expense object containing the amount, category, and date to be saved.
+     */
     public static void addExpense(Expense ex) {
         String insertIntoExpense = "insert into expenses (amount, category, timestamp) values (?, ?, ?)";
         try (var conn = connection()) {
@@ -57,6 +71,15 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Updates the current budget cycle by replacing the old cycle data.
+     * Additionally cleans up the database by removing expenses that fall outside
+     * the new date range.
+     *
+     * @param newLimit The new total allowance for the cycle.
+     * @param newStart The starting date of the new cycle.
+     * @param newEnd   The ending date of the new cycle.
+     */
     public static void updateCycle(double newLimit, LocalDate newStart, LocalDate newEnd) {
         String deleteOldCycle = "delete from budget_cycle";
         String insertNewCycle = "insert into budget_cycle (allowance, startDate, endDate) values(?,?,?)";
@@ -86,6 +109,10 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Completely wipes the database by deleting all records from both
+     * the expenses and budget_cycle tables.
+     */
     public static void deleteCycle() {
         String delete = "delete from expenses";
         String deleteC = "delete from budget_cycle";
@@ -100,6 +127,11 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Retrieves all stored expenses from the database.
+     *
+     * @return An ArrayList of Expense objects representing the full transaction history.
+     */
     public static ArrayList<Expense> getAllExpenses() {
         ArrayList<Expense> expensesList = new ArrayList<>();
         String query = "select amount,category,timestamp from expenses";
@@ -122,6 +154,11 @@ public class databaseManager {
         return expensesList;
     }
 
+    /**
+     * Fetches the current active budget cycle configuration from the database.
+     *
+     * @return A BudgetCycle object if data exists, or null if no cycle is configured.
+     */
     public static BudgetCycle getCycleData() {
         String query = "select allowance, startDate, endDate from budget_cycle";
         try (Connection conn = connection()) {
@@ -140,6 +177,11 @@ public class databaseManager {
         return null;
     }
 
+    /**
+     * Routes the export request to the appropriate handler based on the desired format.
+     *
+     * @param fileType The file extension format ("csv", "xml", or "json").
+     */
     public static void exportFile(String fileType) {
         switch (fileType) {
             case "csv":
@@ -154,6 +196,10 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Queries all expenses and writes them to a file named 'transactions.csv'
+     * in a comma-separated format.
+     */
     public static void exportCSV() {
         String csvFilePath = "transactions.csv";
         String query = "select amount,category,timestamp from expenses";
@@ -185,6 +231,10 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Queries all expenses and writes them to 'transactions.xml' with standard
+     * XML tags for structured data portability.
+     */
     public static void exportXML() {
         String xmlFilePath = "transactions.xml";
         String query = "select amount, category, timestamp from expenses";
@@ -225,6 +275,10 @@ public class databaseManager {
         }
     }
 
+    /**
+     * Serializes the expense list into a formatted JSON file using the GSON library.
+     * Includes a custom adapter to handle LocalDate serialization.
+     */
     public static void exportJSON() {
         String jsonFilePath = "transactions.json";
         ArrayList<Expense> allExpenses = getAllExpenses();

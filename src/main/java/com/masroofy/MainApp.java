@@ -19,9 +19,20 @@ import java.util.Optional;
 
 import com.masroofy.model.databaseManager;
 
+/**
+ * The main entry point for the Masroofy JavaFX application.
+ * This class orchestrates the application lifecycle, including database initialization
+ * and the conditional loading of either the setup wizard or the main dashboard.
+ */
 public class MainApp extends Application {
 
 
+    /**
+     * Loads and displays the setup scene where the user can configure a new budget cycle.
+     *
+     * @param primaryStage The primary window of the application.
+     * @throws Exception   If the FXML file for the setup view cannot be loaded.
+     */
     private void loadSetup(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/SetupView.fxml"));
         Parent root = loader.load();
@@ -34,6 +45,13 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Loads and displays the main dashboard scene using data from an existing budget cycle.
+     *
+     * @param primaryStage The primary window of the application.
+     * @param savedCycle   The BudgetCycle object containing the user's saved financial data.
+     * @throws Exception   If the FXML file for the dashboard view cannot be loaded.
+     */
     private void loadDashboard(Stage primaryStage, BudgetCycle savedCycle) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/MainDashboardView.fxml"));
         Parent root = loader.load();
@@ -49,6 +67,14 @@ public class MainApp extends Application {
     }
 
 
+    /**
+     * Initializes the database and determines the application's starting state.
+     * If a previous session is detected, it prompts the user to either resume
+     * the old session or wipe the data and start a new one.
+     *
+     * @param primaryStage The primary stage for this application.
+     * @throws Exception   If there is an error during scene transitions.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -77,6 +103,11 @@ public class MainApp extends Application {
     }
 
 
+    /**
+     * The standard Java main method used to launch the JavaFX application.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args){
         launch(args);
     }

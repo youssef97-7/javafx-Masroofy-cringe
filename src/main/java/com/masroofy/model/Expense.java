@@ -75,4 +75,8 @@ public class Expense {
     public LocalDate getTimestamp() {
         return this.timestamp;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

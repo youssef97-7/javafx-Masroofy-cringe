@@ -6,12 +6,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-
+import com.masroofy.controller.historyScreenController;
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 
 /**
  * Manages all database operations for the Masroofy application.
@@ -71,6 +72,43 @@ public class databaseManager {
         }
     }
 
+
+
+
+    /**
+     * Updates an existing expense record in the database.
+     *
+     * @param id          The unique identifier of the expense to update.
+     * @param newAmount   The updated amount for the expense.
+     * @param newCategory The updated category for the expense.
+     */
+    public static void updateExpense(int id, double newAmount, String newCategory) {
+        String updateQuery = "update expenses set amount = ?, category = ? where id = ?";
+        try (Connection conn = connection()) {
+            PreparedStatement pstmt = conn.prepareStatement(updateQuery);
+            pstmt.setDouble(1, newAmount);
+            pstmt.setString(2, newCategory);
+            pstmt.setInt(3, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Failed to update database: " + e.getMessage());
+        }
+    }
+    /**
+     * Removes a specific expense record from the database.
+     *
+     * @param id The unique identifier of the expense to delete.
+     */
+    public static void deleteExpense(int id) {
+        String deleteQuery = "delete from expenses where id = ?";
+        try (Connection conn = connection()) {
+            PreparedStatement pstmt = conn.prepareStatement(deleteQuery);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Failed to delete from database: " + e.getMessage());
+        }
+    }
     /**
      * Updates the current budget cycle by replacing the old cycle data.
      * Additionally cleans up the database by removing expenses that fall outside
@@ -126,7 +164,6 @@ public class databaseManager {
             System.err.println("Error deleting cycle: " + e.getMessage());
         }
     }
-
     /**
      * Retrieves all stored expenses from the database.
      *
@@ -134,18 +171,27 @@ public class databaseManager {
      */
     public static ArrayList<Expense> getAllExpenses() {
         ArrayList<Expense> expensesList = new ArrayList<>();
-        String query = "select amount,category,timestamp from expenses";
+        // 1. ADDED 'id' TO THE SELECT QUERY
+        String query = "select id, amount, category, timestamp from expenses";
+
         try (Connection conn = connection()) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
+                // 2. GET THE ID FROM THE DATABASE
+                int id = rs.getInt("id");
+
                 double amount = rs.getDouble("amount");
                 String catS = rs.getString("category");
                 String timeS = rs.getString("timestamp");
                 Category cat = new Category(catS);
                 Expense e = new Expense(amount, cat);
                 e.setTimeStamp(LocalDate.parse(timeS));
+
+                // 3. SET THE ACTUAL DATABASE ID TO THE OBJECT
+                e.setId(id);
+
                 expensesList.add(e);
             }
         } catch (SQLException e) {
@@ -153,7 +199,6 @@ public class databaseManager {
         }
         return expensesList;
     }
-
     /**
      * Fetches the current active budget cycle configuration from the database.
      *
@@ -297,4 +342,5 @@ public class databaseManager {
         }
 
     }
+
 }

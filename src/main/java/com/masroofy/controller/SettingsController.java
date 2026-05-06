@@ -12,6 +12,9 @@ public class SettingsController {
     @FXML private DatePicker startDatePicker;
     @FXML private DatePicker endDatePicker;
     @FXML private TextField allowanceField;
+    @FXML private PasswordField currentPinField;
+    @FXML private PasswordField newPinField;
+    @FXML private PasswordField confirmPinField;
 
     private Runnable backToDashboardHandler;
     private Runnable onCycleUpdatedHandler;
@@ -80,6 +83,48 @@ public class SettingsController {
     private void handleBack() {
         if (backToDashboardHandler != null) {
             backToDashboardHandler.run();
+        }
+    }
+
+    @FXML
+    private void handleChangePin() {
+        String currentInput = currentPinField.getText();
+        String newInput = newPinField.getText();
+        String confirmInput = confirmPinField.getText();
+
+        if (currentInput.isEmpty() || newInput.isEmpty() || confirmInput.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
+            return;
+        }
+
+        if (!newInput.matches("\\d+")) {
+            showAlert(Alert.AlertType.ERROR, "Error", "New PIN must be numeric.");
+            return;
+        }
+
+        if (!newInput.equals(confirmInput)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "New PIN and Confirmation do not match.");
+            return;
+        }
+
+        int currentStoredPin = databaseManager.getPin();
+        if (Integer.parseInt(currentInput) != currentStoredPin) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Incorrect current PIN.");
+            return;
+        }
+
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm PIN Change");
+        confirmAlert.setHeaderText("Confirm PIN Change");
+        confirmAlert.setContentText("Are you sure you want to change your security PIN?");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            databaseManager.updatePin(Integer.parseInt(newInput));
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Security PIN updated successfully.");
+            currentPinField.clear();
+            newPinField.clear();
+            confirmPinField.clear();
         }
     }
 

@@ -67,7 +67,7 @@ public class MainController {
      * and updates the corresponding summary labels on the dashboard UI.
      */
     private void updateDashboard(){
-        double dailyLimit = budgetCalculator.CalcDailyLimit();
+        double dailyLimit = budgetCycle.getTodayRemainingLimit();
         double totalSpent = expenseManager.getTotalSpent();
         double remainingAllowance = budgetCycle.getTotalAllowance() - totalSpent;
 
@@ -83,6 +83,11 @@ public class MainController {
     private void handleforwardoneday(){
         if(budgetCycle != null){
             budgetCycle.advanceonday();
+            double newSafeLimit = budgetCalculator.CalcDailyLimit();
+            budgetCycle.setSafeDailyLimit(newSafeLimit);
+
+            budgetCycle.setTodayRemainingLimit(newSafeLimit);
+
             updateDashboard();
             System.out.println("Time Travel! New simulated date: " + budgetCycle.getCurrentDate());
         }

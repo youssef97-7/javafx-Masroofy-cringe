@@ -43,14 +43,55 @@ public class databaseManager {
                 + "category text not null,"
                 + "timestamp text not null"
                 + ");";
+        var sql3 = "CREATE TABLE IF NOT EXISTS user_auth ("
+                + "id integer primary key autoincrement,"
+                + "pin integer not null"
+                + ");";
 
         try (Connection con = connection()) {
             Statement statement = con.createStatement();
             statement.execute(sql1);
             statement.execute(sql2);
+            statement.execute(sql3);
             System.out.println("Database initialized successfully");
         } catch (SQLException e) {
             System.err.println("Failed to initialize database: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the stored security PIN.
+     * @return The PIN if it exists, -1 otherwise.
+     */
+    public static int getPin() {
+        String query = "SELECT pin FROM user_auth LIMIT 1";
+        try (Connection conn = connection()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) {
+                return rs.getInt("pin");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching PIN: " + e.getMessage());
+        }
+        return -1;
+    }
+
+    /**
+     * Updates or sets the security PIN.
+     * @param newPin The new PIN to store.
+     */
+    public static void updatePin(int newPin) {
+        String deleteOld = "DELETE FROM user_auth";
+        String insertNew = "INSERT INTO user_auth (pin) VALUES (?)";
+        try (Connection conn = connection()) {
+            PreparedStatement delStmt = conn.prepareStatement(deleteOld);
+            delStmt.executeUpdate();
+            PreparedStatement insStmt = conn.prepareStatement(insertNew);
+            insStmt.setInt(1, newPin);
+            insStmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error updating PIN: " + e.getMessage());
         }
     }
 

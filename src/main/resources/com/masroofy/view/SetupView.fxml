@@ -9,9 +9,14 @@
 
       <VBox alignment="CENTER" maxWidth="600.0" spacing="40.0">
          <children>
-            <Label text="Welcome to Masroofy Cringe">
-               <font><Font name="Segoe UI Black" size="32.0" /></font>
-            </Label>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="Welcome to Masroofy">
+                     <font><Font name="Segoe UI Black" size="36.0" /></font>
+                  </Label>
+                  <Label styleClass="text-muted" text="Let's get your budget set up!" />
+               </children>
+            </VBox>
 
             <GridPane alignment="CENTER" hgap="20.0" vgap="25.0">
                <columnConstraints>
@@ -34,8 +39,14 @@
                      <font><Font name="Segoe UI Black" size="16.0" /></font>
                   </Label>
                   <TextField fx:id="cycleLength" prefHeight="45.0" promptText="30" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                  <Label fx:id="pinLabel" text="Create Security PIN:" GridPane.rowIndex="3">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+                  <PasswordField fx:id="pinField" prefHeight="45.0" promptText="1234" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <rowConstraints>
+                  <RowConstraints />
                   <RowConstraints />
                   <RowConstraints />
                   <RowConstraints />

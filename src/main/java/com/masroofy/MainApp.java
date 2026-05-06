@@ -1,6 +1,7 @@
 package com.masroofy;
 
 import com.masroofy.controller.MainController;
+import com.masroofy.controller.PinEntryController;
 import com.masroofy.controller.SetupController;
 import com.masroofy.model.BudgetCycle;
 import com.masroofy.model.Category;
@@ -77,8 +78,40 @@ public class MainApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         databaseManager.initializeDatabase();
+        
+        BudgetCycle saved = databaseManager.getCycleData();
+        if (saved == null) {
+            // No budget cycle exists - Go to Setup (which handles PIN creation if needed)
+            loadSetup(primaryStage);
+        } else {
+            // Budget cycle found - Returning user, must authenticate first
+            showPinEntry(primaryStage);
+        }
+    }
+
+    private void showPinEntry(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/PinEntryView.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 400, 450);
+
+        PinEntryController controller = loader.getController();
+        controller.setStage(primaryStage);
+        controller.setOnSuccess(() -> {
+            try {
+                proceedAfterAuth(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        primaryStage.setTitle("Masroofy - Authentication");
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+    }
+
+    private void proceedAfterAuth(Stage primaryStage) throws Exception {
         BudgetCycle saved = databaseManager.getCycleData();
         if(saved!= null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

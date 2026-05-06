@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.PinEntryController">
+   <children>
+      <VBox alignment="CENTER" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="titleLabel" text="Security PIN">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            
+            <PasswordField fx:id="pinField" alignment="CENTER" maxWidth="250.0" promptText="Enter PIN" style="-fx-font-size: 20px;">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </PasswordField>
+            
+            <Button fx:id="actionButton" mnemonicParsing="false" onAction="#handleAction" prefHeight="50.0" prefWidth="250.0" styleClass="action-button" text="Unlock" />
+            
+            <Label styleClass="text-muted" text="Numbers only" />
+         </children>
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

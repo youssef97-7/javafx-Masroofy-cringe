@@ -18,7 +18,6 @@ public class ExpenseController {
     @FXML  private TextField inputamount;
     @FXML private Button addExpenseButton;
     private ExpenseManager manager;
-
     private Runnable onUpdate;
 
     /**

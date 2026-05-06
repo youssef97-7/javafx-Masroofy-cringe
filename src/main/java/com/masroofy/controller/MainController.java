@@ -45,19 +45,42 @@ public class MainController {
      * @param start     The start date of the budget cycle.
      * @param end       The end date of the budget cycle.
      */
+
+//    public void initializeData(double allowance, LocalDate start, LocalDate end){
+//        budgetCycle = new BudgetCycle(start, end, allowance);
+//        expenseManager = new ExpenseManager(budgetCycle);
+//        budgetCalculator = new BudgetCalculator(budgetCycle, expenseManager);
+//        expenseViewController.setManager(expenseManager);
+//        ArrayList<Expense> pastExpenses = databaseManager.getAllExpenses();
+//        for(Expense e: pastExpenses){
+//            expenseManager.addExpense(e);
+//        }
+//        expenseViewController.setOnUpdate(() -> {
+//            historyScreenViewController.display();
+//            updateDashboard();
+//        });
+//        updateDashboard();
+//        historyScreenViewController.display();
+//    }
     public void initializeData(double allowance, LocalDate start, LocalDate end){
         budgetCycle = new BudgetCycle(start, end, allowance);
         expenseManager = new ExpenseManager(budgetCycle);
         budgetCalculator = new BudgetCalculator(budgetCycle, expenseManager);
         expenseViewController.setManager(expenseManager);
+
         ArrayList<Expense> pastExpenses = databaseManager.getAllExpenses();
-        for(Expense e: pastExpenses){
-            expenseManager.addExpense(e);
+        for(Expense e : pastExpenses) {
+            expenseManager.getExpenses().add(e);
         }
+
+        double initialDailyLimit = budgetCalculator.CalcDailyLimit();
+        budgetCycle.setTodayRemainingLimit(initialDailyLimit);
+
         expenseViewController.setOnUpdate(() -> {
             historyScreenViewController.display();
             updateDashboard();
         });
+
         updateDashboard();
         historyScreenViewController.display();
     }
@@ -67,7 +90,7 @@ public class MainController {
      * and updates the corresponding summary labels on the dashboard UI.
      */
     private void updateDashboard(){
-        double dailyLimit = budgetCalculator.CalcDailyLimit();
+        double dailyLimit = budgetCycle.getTodayRemainingLimit();
         double totalSpent = expenseManager.getTotalSpent();
         double remainingAllowance = budgetCycle.getTotalAllowance() - totalSpent;
 
@@ -83,6 +106,11 @@ public class MainController {
     private void handleforwardoneday(){
         if(budgetCycle != null){
             budgetCycle.advanceonday();
+            double newSafeLimit = budgetCalculator.CalcDailyLimit();
+            budgetCycle.setSafeDailyLimit(newSafeLimit);
+
+            budgetCycle.setTodayRemainingLimit(newSafeLimit);
+
             updateDashboard();
             System.out.println("Time Travel! New simulated date: " + budgetCycle.getCurrentDate());
         }

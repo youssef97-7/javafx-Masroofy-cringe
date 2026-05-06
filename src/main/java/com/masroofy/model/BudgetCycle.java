@@ -1,6 +1,7 @@
 package com.masroofy.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -16,6 +17,7 @@ public class BudgetCycle {
     private double totalAllowance;
     private double remainingAllowance;
     private double safeDailyLimit;
+    private double todayRemainingLimit;
     private List<Expense> expenses = new ArrayList<>();
     //adding a forward day button
     private static LocalDate currentDate;
@@ -35,6 +37,8 @@ public class BudgetCycle {
         this.endDate = end;
         this.totalAllowance = allowance;
         currentDate = LocalDate.now();
+        int days = (int) ChronoUnit.DAYS.between(start, end) + 1;
+        this.todayRemainingLimit = allowance/days;
     }
 
     // el khalfia functions for forwarding a day
@@ -54,6 +58,8 @@ public class BudgetCycle {
     public void advanceonday(){
         currentDate = currentDate.plusDays(1);
         this.addeddays++;
+        // call function that recalculates the safe daily limit
+
     }
 
     /**
@@ -65,7 +71,22 @@ public class BudgetCycle {
         return this.addeddays;
     }
 
+    public void setSafeDailyLimit(double safeDailyLimit) {
+        this.safeDailyLimit = safeDailyLimit;
+    }
 
+    public void setTodayRemainingLimit(double amount) {
+        this.todayRemainingLimit = amount;
+    }
+
+    public void reduceTodayRemainingLimit(double amount) {
+        this.todayRemainingLimit = Math.max(this.todayRemainingLimit - amount, 0);
+    }
+
+    public double getTodayRemainingLimit()
+    {
+        return todayRemainingLimit;
+    }
 
     /** @return The list of all expenses recorded within this cycle. */
     public List<Expense> getExpenses(){
@@ -102,12 +123,4 @@ public class BudgetCycle {
         return this.safeDailyLimit;
     }
 
-    /**
-     * Updates the safe daily limit value.
-     *
-     * @param limit The new safe daily limit to be set.
-     */
-    public void getSafeDailyLimit(double limit){ //not correct
-
-    }
 }

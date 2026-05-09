@@ -1,0 +1,539 @@
+/* ============================================================
+   MASROOFY — styles.css
+   Two themes: Light (default) and Dark
+   To switch theme: change .root to .root.dark  (see below)
+   ============================================================ */
+
+/* ============================================================
+   LIGHT THEME (default)
+   ============================================================ */
+.root {
+    -main-color:        #2f8a5f;
+    -main-color-dark:   #236b48;
+    -main-color-darker: #1a5236;
+    -main-color-glow:   rgba(47,138,95,0.30);
+    -main-color-tint:   #d4eade;
+
+    -sidebar-bg:           #1a1d23;
+    -sidebar-border:       #2e3340;
+    -sidebar-hover-bg:     #1e2d26;
+    -sidebar-text:         #a8adb8;
+    -sidebar-text-active:  #ffffff;
+
+    -content-bg:           #e8edf2;
+    -content-bg-alt:       #e0e6ed;
+    -content-border:       #d0d7e0;
+
+    -text-primary:         #1c1e24;
+    -text-muted:           #7a7f8e;
+    -text-label:           #4a5060;
+
+    -input-bg:             #ffffff;
+    -input-border:         #dde0e8;
+
+    -danger-color:         #e03e3e;
+
+    -fx-background-color: -content-bg;
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* ============================================================
+   DARK THEME
+   Apply by adding styleClass="dark" to the root AnchorPane
+   in MainDashboardView.fxml
+   ============================================================ */
+.dark {
+    -main-color:        #2f8a5f;
+    -main-color-dark:   #236b48;
+    -main-color-darker: #1a5236;
+    -main-color-glow:   rgba(47,138,95,0.35);
+    -main-color-tint:   #1a3328;
+
+    -sidebar-bg:           #111317;
+    -sidebar-border:       #1e2128;
+    -sidebar-hover-bg:     #162419;
+    -sidebar-text:         #7a8194;
+    -sidebar-text-active:  #e8edf2;
+
+    -content-bg:           #1a1d23;
+    -content-bg-alt:       #1e2128;
+    -content-border:       #2a2e38;
+
+    -text-primary:         #e8edf2;
+    -text-muted:           #6a7080;
+    -text-label:           #9aa0b0;
+
+    -input-bg:             #22262f;
+    -input-border:         #2e3340;
+
+    -danger-color:         #e03e3e;
+
+    -fx-background-color: -content-bg;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {
+    -fx-background-color: -sidebar-bg;
+    -fx-padding: 8px;
+    -fx-spacing: 4px;
+}
+
+.sidebar > .label {
+    -fx-text-fill: -sidebar-text-active;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 16px 12px 8px 12px;
+}
+
+.sidebar > .separator .line {
+    -fx-border-color: -sidebar-border;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.sidebar > .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -sidebar-text;
+    -fx-font-size: 13.5px;
+    -fx-alignment: center-left;
+    -fx-padding: 10px 16px;
+    -fx-background-radius: 7px;
+    -fx-border-color: -sidebar-border;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.sidebar > .button:hover {
+    -fx-background-color: -sidebar-hover-bg;
+    -fx-border-color: -main-color;
+    -fx-text-fill: -main-color;
+}
+
+.sidebar > .button:focused {
+    -fx-background-color: -sidebar-hover-bg;
+    -fx-border-color: -main-color;
+    -fx-text-fill: -main-color;
+}
+
+.sidebar > .action-button {
+    -fx-background-color: -sidebar-border;
+    -fx-text-fill: -text-muted;
+    -fx-font-size: 11px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 7px;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-effect: none;
+    -fx-font-weight: normal;
+}
+
+.sidebar > .action-button:hover {
+    -fx-text-fill: -sidebar-text-active;
+}
+
+/* Theme toggle button — sits in sidebar */
+.theme-toggle {
+    -fx-background-color: -sidebar-border;
+    -fx-text-fill: -main-color;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 7px;
+    -fx-border-color: -main-color;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.theme-toggle:hover {
+    -fx-background-color: -main-color;
+    -fx-text-fill: #ffffff;
+}
+
+/* ============================================================
+   DASHBOARD LABELS
+   ============================================================ */
+#dailyLimitLabel {
+    -fx-text-fill: -main-color;
+    -fx-font-size: 36px;
+    -fx-font-weight: 800;
+}
+
+#totalAllowanceLabel {
+    -fx-text-fill: -text-muted;
+    -fx-font-size: 20px;
+}
+
+/* ============================================================
+   INPUT FIELDS
+   ============================================================ */
+.text-field {
+    -fx-background-color: -input-bg;
+    -fx-border-color: -input-border;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: #6a7080;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 1);
+}
+
+.text-field:focused {
+    -fx-border-color: -main-color;
+    -fx-effect: dropshadow(gaussian, -main-color-glow, 6, 0, 0, 0);
+}
+
+.combo-box, .choice-box {
+    -fx-background-color: -input-bg;
+    -fx-border-color: -input-border;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 4px 8px;
+    -fx-font-size: 13px;
+}
+
+.combo-box:focused, .combo-box:showing,
+.choice-box:focused, .choice-box:showing {
+    -fx-border-color: -main-color;
+}
+
+.combo-box .list-cell, .choice-box .label {
+    -fx-text-fill: -text-primary;
+    -fx-background-color: transparent;
+}
+
+.combo-box > .arrow-button > .arrow,
+.choice-box > .open-button > .arrow,
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: -text-primary;
+    -fx-background-insets: 0;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -input-bg;
+    -fx-border-color: -input-border;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0, 0, 4);
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: -main-color-tint;
+    -fx-text-fill: -main-color;
+}
+
+/* ============================================================
+   DATE PICKER
+   ============================================================ */
+.date-picker {
+    -fx-background-color: -input-bg;
+    -fx-border-color: -input-border;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.date-picker:focused {
+    -fx-border-color: -main-color;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-primary;
+    -fx-border-color: transparent;
+    -fx-effect: none;
+}
+
+/* Internal calendar icon */
+.date-picker .arrow-button .arrow {
+    -fx-background-color: -text-primary;
+}
+
+/* DatePicker Popup (Calendar) */
+.date-picker-popup {
+    -fx-background-color: -content-bg;
+    -fx-border-color: -content-border;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0, 0, 8);
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: -content-bg-alt;
+}
+
+.date-picker-popup > .month-year-pane > .label {
+    -fx-text-fill: -text-primary;
+}
+
+.date-picker-popup > .calendar-grid {
+    -fx-background-color: -content-bg;
+}
+
+.date-picker-popup > .calendar-grid > .day-cell {
+    -fx-text-fill: -text-primary;
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup > .calendar-grid > .day-name-cell {
+    -fx-text-fill: -main-color;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > .calendar-grid > .day-cell:hover {
+    -fx-background-color: -main-color-tint;
+}
+
+.date-picker-popup > .calendar-grid > .today {
+    -fx-text-fill: -main-color;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > .calendar-grid > .selected {
+    -fx-background-color: -main-color;
+    -fx-text-fill: #ffffff;
+}
+
+.date-picker-popup > .calendar-grid > .previous-month,
+.date-picker-popup > .calendar-grid > .next-month {
+    -fx-text-fill: -text-muted;
+}
+
+/* Navigation buttons in calendar */
+.date-picker-popup > .month-year-pane > .left-arrow-button > .left-arrow,
+.date-picker-popup > .month-year-pane > .right-arrow-button > .right-arrow {
+    -fx-background-color: -text-primary;
+}
+
+/* ============================================================
+   PRIMARY ACTION BUTTON
+   ============================================================ */
+.action-button {
+    -fx-background-color: -main-color;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13.5px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7px;
+    -fx-padding: 7px 14px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -main-color-glow, 8, 0, 0, 3);
+}
+
+.action-button:hover {
+    -fx-background-color: -main-color-dark;
+}
+
+.action-button:pressed {
+    -fx-background-color: -main-color-darker;
+    -fx-effect: none;
+    -fx-translate-y: 1px;
+}
+
+#addExpenseButton {
+    -fx-background-color: -main-color;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13.5px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7px;
+    -fx-padding: 11px 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -main-color-glow, 8, 0, 0, 3);
+}
+
+#addExpenseButton:hover { -fx-background-color: -main-color-dark; }
+#addExpenseButton:pressed { -fx-background-color: -main-color-darker; -fx-translate-y: 1px; }
+
+/* ============================================================
+   HISTORY PANEL
+   ============================================================ */
+.history-panel {
+    -fx-background-color: -content-bg;
+    -fx-border-color: -content-border;
+    -fx-border-width: 0 0 0 1px;
+}
+
+.history-panel .button {
+    -fx-background-color: transparent;
+    -fx-border-color: -input-border;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 6px;
+    -fx-text-fill: -text-muted;
+    -fx-padding: 6px 12px;
+    -fx-cursor: hand;
+}
+
+.history-panel .button:hover {
+    -fx-background-color: rgba(224,62,62,0.1);
+    -fx-border-color: -danger-color;
+    -fx-text-fill: -danger-color;
+}
+
+/* ============================================================
+   TABLE VIEW
+   ============================================================ */
+.table-view {
+    -fx-background-color: -content-bg;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: -content-border;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -content-bg-alt;
+    -fx-border-color: -content-border;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -text-muted;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 8px;
+}
+
+.table-row-cell {
+    -fx-background-color: -content-bg;
+    -fx-border-color: transparent;
+    -fx-cell-size: 40px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -content-bg-alt;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: -main-color-tint;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -main-color-tint;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: -text-primary;
+}
+
+.table-cell {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+    -fx-padding: 4px 10px;
+    -fx-alignment: center-left;
+}
+
+.table-view #colAmount .table-cell {
+    -fx-alignment: center-right;
+    -fx-text-fill: -main-color;
+    -fx-font-weight: bold;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: -content-border;
+    -fx-background-radius: 4px;
+}
+
+/* ============================================================
+   SETUP SCREEN
+   ============================================================ */
+.setup-screen {
+    -fx-background-color: -content-bg;
+}
+
+.setup-screen .label {
+    -fx-text-fill: -text-primary;
+}
+
+.setup-screen .grid-pane .label {
+    -fx-text-fill: -text-label;
+    -fx-font-size: 14px;
+}
+
+.setup-screen .button {
+    -fx-background-color: -main-color;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -main-color-glow, 10, 0, 0, 4);
+}
+
+
+.setup-screen .button:hover { -fx-background-color: -main-color-dark; }
+.setup-screen .button:pressed { -fx-background-color: -main-color-darker; -fx-translate-y: 1px; }
+
+/* ============================================================
+   SEPARATORS & SCROLLBARS & MISC
+   ============================================================ */
+.label {
+    -fx-text-fill: -text-primary;
+}
+
+.text {
+    -fx-fill: -text-primary;
+}
+
+/* Chart Styling */
+.chart-title {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.axis-label {
+    -fx-text-fill: -text-label;
+}
+
+.axis {
+    -fx-tick-label-fill: -text-muted;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: -text-primary;
+}
+
+.chart-plot-background {
+    -fx-background-color: -content-bg-alt;
+}
+
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: -content-border;
+}
+
+.separator .line {
+    -fx-border-color: -content-border;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.scroll-bar { -fx-background-color: transparent; }
+.scroll-bar .thumb { -fx-background-color: -content-border; -fx-background-radius: 4px; }
+.scroll-bar .thumb:hover { -fx-background-color: -text-muted; }
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button { -fx-background-color: transparent; -fx-padding: 2px; }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.coming-soon {
+    -fx-text-fill: -text-muted;
+    -fx-font-size: 13px;
+    -fx-font-style: italic;
+}

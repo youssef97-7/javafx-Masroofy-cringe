@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="225.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.ExpenseController">
+    <children>
+
+        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" maxWidth="300.0" spacing="15.0">
+                    <Label text="Add Expense">
+                        <font><Font name="System Bold" size="18.0" /></font>
+                    </Label>
+                    <TextField fx:id="inputamount" prefWidth="250.0" promptText="Amount" />
+                    <ComboBox fx:id="categoryBox" prefWidth="250.0" promptText="Category" />
+                    <Button fx:id="addExpenseButton" mnemonicParsing="false" onAction="#handleAddExpense" prefWidth="250.0" text="Add Expense" />
+                </VBox>
+            </children>
+        </StackPane>
+
+    </children>
+</AnchorPane>

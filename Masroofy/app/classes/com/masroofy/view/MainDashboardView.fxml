@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.MainController">
+    <children>
+
+        <VBox prefWidth="160.0" spacing="10.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label style="-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold;" text="Nav" />
+            <Separator />
+
+            <Button fx:id="btnDashboard" maxWidth="Infinity" mnemonicParsing="false" onAction="#showDashboard" style="-fx-text-fill: white;" text="Dashboard" />
+            <Button fx:id="btnToggleTheme" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleToggleTheme" prefHeight="41.0" prefWidth="151.0" style="-fx-text-fill: white;" styleClass="theme-toggle" text="🌙 Dark Mode" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showSettings" style="-fx-text-fill: white;" text="Settings" />
+            <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" style="-fx-text-fill: white;" text="Analytics" />
+            <Button fx:id="btnExport" maxWidth="Infinity" mnemonicParsing="false" onAction="#showExport" style="-fx-text-fill: white;" text="Export" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAbout" style="-fx-text-fill: white;" text="About" />
+
+            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" style="-fx-text-fill: white;" styleClass="action-button" text="advance -&gt;">
+                <font>
+                    <Font name="Bell MT" size="14.0" />
+                </font>
+            </Button>
+        </VBox>
+
+        <Separator orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="0.0" />
+
+        <StackPane fx:id="contentArea" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane fx:id="dashboardPane">
+                    <children>
+                        <StackPane prefHeight="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <VBox alignment="CENTER" spacing="10.0">
+                                <Label fx:id="dailyLimitLabel" text="Daily Limit: EGP 0.00">
+                                    <font><Font name="System Bold" size="36.0" /></font>
+                                </Label>
+                                <Label fx:id="totalAllowanceLabel" text="Total Allowance: EGP 0.00">
+                                    <font><Font size="22.0" /></font>
+                                </Label>
+                            </VBox>
+                        </StackPane>
+
+                        <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0" />
+
+                        <StackPane AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
+                            <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
+                        </StackPane>
+
+                        <Separator AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+
+                        <StackPane prefHeight="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <Label style="-fx-text-fill: #aaaaaa; -fx-font-size: 14px;" text="Recurring (coming soon)" />
+                        </StackPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="exportPane" style="-fx-background-color: -content-bg;" visible="false">
+                    <fx:include fx:id="exportView" source="ExportView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                </AnchorPane>
+            </children>
+        </StackPane>
+
+        <Separator orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="0.0" />
+
+        <AnchorPane prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <fx:include fx:id="historyScreenView" source="historyScreenView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+
+    </children>
+</AnchorPane>

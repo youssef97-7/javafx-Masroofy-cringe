@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane styleClass="setup-screen" stylesheets="@styles.css" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.masroofy.controller.SetupController">
+   <children>
+
+      <VBox alignment="CENTER" maxWidth="600.0" spacing="40.0">
+         <children>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="Welcome to Masroofy">
+                     <font><Font name="Segoe UI Black" size="36.0" /></font>
+                  </Label>
+                  <Label styleClass="text-muted" text="Let's get your budget set up!" />
+               </children>
+            </VBox>
+
+            <GridPane alignment="CENTER" hgap="20.0" vgap="25.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" minWidth="200.0" />
+                  <ColumnConstraints minWidth="250.0" />
+               </columnConstraints>
+               <children>
+                  <Label text="Enter Cycle's Allowance: ">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+
+                  <TextField fx:id="totalAllowance" prefHeight="45.0" promptText="10000" GridPane.columnIndex="1" />
+
+                  <Label text="Enter Cycle's Start Date:" GridPane.rowIndex="1">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+                  <DatePicker fx:id="startDate" maxWidth="Infinity" prefHeight="45.0" promptText="24/06/2025" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                  <Label text="Enter Cycle's Length:" GridPane.rowIndex="2">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+                  <TextField fx:id="cycleLength" prefHeight="45.0" promptText="30" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                  <Label fx:id="pinLabel" text="Create Security PIN:" GridPane.rowIndex="3">
+                     <font><Font name="Segoe UI Black" size="16.0" /></font>
+                  </Label>
+                  <PasswordField fx:id="pinField" prefHeight="45.0" promptText="1234" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+
+            <Button styleClass="action-button" onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Start Cycle">
+               <font><Font name="System Bold" size="18.0" /></font>
+            </Button>
+         </children>
+      </VBox>
+
+   </children>
+</StackPane>

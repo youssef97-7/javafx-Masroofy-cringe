@@ -53,7 +53,7 @@
                </rowConstraints>
             </GridPane>
 
-            <Button styleClass="action-button" onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Next">
+            <Button styleClass="action-button" onAction="#handleButtonNext" prefHeight="50.0" prefWidth="320.0" text="Start Cycle">
                <font><Font name="System Bold" size="18.0" /></font>
             </Button>
          </children>

@@ -1,5 +1,7 @@
 package com.masroofy.model;
 
+import com.dustinredmond.fxalert.FXAlert;
+
 import java.util.*;
 
 /**
@@ -10,6 +12,7 @@ import java.util.*;
 public class ExpenseManager {
     private BudgetCycle currentCycle;
     private List<Expense> expenses;
+
     /**
      * Initializes the manager by linking it to an active budget cycle
      * and loading its existing list of expenses.
@@ -21,16 +24,6 @@ public class ExpenseManager {
         this.expenses = this.currentCycle.getExpenses();
     }
 
-    /**
-     * Appends a new expense to the current tracking list.
-     *
-     * @param expense The Expense object to be added.
-     */
-    public void addExpense(Expense expense) { //should be boolean but i forgot why
-        expenses.add(expense);
-        currentCycle.reduceTodayRemainingLimit(expense.getAmount());
-
-    }
 
     /**
      * Locates an existing expense by its unique ID and updates its
@@ -40,11 +33,11 @@ public class ExpenseManager {
      * @param newAmount   The updated cost of the expense.
      * @param newCategory The updated category label.
      */
-    public void editExpense(int expenseId, double newAmount, String newCategory){ // need to be boolean
-        for(int i = 0; i < expenses.size(); ++i){
+    public void editExpense(int expenseId, double newAmount, String newCategory) { // need to be boolean
+        for (int i = 0; i < expenses.size(); ++i) {
             Expense current = expenses.get(i);
 
-            if(current.getId() == expenseId){
+            if (current.getId() == expenseId) {
                 expenses.get(i).setAmount(newAmount);
                 expenses.get(i).setCategory(newCategory);
             }
@@ -56,8 +49,8 @@ public class ExpenseManager {
      *
      * @param expenseId The ID of the expense to be permanently removed.
      */
-    public void deleteExpense(int expenseId){
-        expenses.removeIf( expense ->expense.getId() == expenseId);
+    public void deleteExpense(int expenseId) {
+        expenses.removeIf(expense -> expense.getId() == expenseId);
     }
 
     /**
@@ -68,9 +61,9 @@ public class ExpenseManager {
      */
     public List<Expense> getExpensesByCategory(String categoryType) {
         List<Expense> result = new ArrayList<Expense>();
-        for(int i = 0; i < expenses.size(); ++i){
+        for (int i = 0; i < expenses.size(); ++i) {
             Expense current = expenses.get(i);
-            if(current.getCategory().equals(categoryType)){
+            if (current.getCategory().equals(categoryType)) {
                 result.add(current);
             }
         }
@@ -83,11 +76,11 @@ public class ExpenseManager {
      * @param categoryType The name of the category to sum.
      * @return The total amount spent in that category.
      */
-    public double getTotalSpentOnCategory(String categoryType){
+    public double getTotalSpentOnCategory(String categoryType) {
         double result = 0.0;
-        for(int i = 0; i < expenses.size(); ++i){
+        for (int i = 0; i < expenses.size(); ++i) {
             Expense current = expenses.get(i);
-            if(current.getCategory().equals(categoryType)){
+            if (current.getCategory().equals(categoryType)) {
                 result += current.getAmount();
             }
         }
@@ -99,9 +92,9 @@ public class ExpenseManager {
      *
      * @return The sum of all recorded expense amounts.
      */
-    public double getTotalSpent(){
+    public double getTotalSpent() {
         double result = 0.0;
-        for(int i = 0; i < expenses.size(); ++i){
+        for (int i = 0; i < expenses.size(); ++i) {
             Expense current = expenses.get(i);
             result += expenses.get(i).getAmount();
         }
@@ -114,7 +107,29 @@ public class ExpenseManager {
      *
      * @return The current list of Expense objects.
      */
-    public List<Expense> getExpenses(){
+    public List<Expense> getExpenses() {
         return expenses;
+    }
+
+    /**
+     * Appends a new expense to the current tracking list.
+     *
+     * @param expense The Expense object to be added.
+     */
+    public void addExpense(Expense expense) { //should be boolean but i forgot why
+        expenses.add(expense);
+        currentCycle.reduceTodayRemainingLimit(expense.getAmount());
+        if (currentCycle.reached80()) {
+            double totalSpent = getTotalSpent();
+            double totalAllowance = currentCycle.getTotalAllowance();
+
+            double percentageUsed = (totalSpent / totalAllowance) * 100;
+
+            if (percentageUsed >= 80) {
+                FXAlert.info().withText("Budget Alert", "Allowance Usage",
+                                String.format("You have finished %.0f%% of your allowance!", percentageUsed))
+                        .show();
+            }
+        }
     }
 }

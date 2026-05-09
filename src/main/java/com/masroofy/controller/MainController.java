@@ -126,7 +126,11 @@ public class MainController {
         contentArea.getChildren().setAll(dashboardPane);
         updateDashboard();
     }
-
+    /**
+     * Loads and displays the Settings view.
+     * Configures the SettingsController with current budget dates and allowance,
+     * and defines handlers for updating the budget cycle or clearing data.
+     */
     @FXML
     private void showSettings() {
         try {
@@ -189,6 +193,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Switches the main content area to display the About/Project information view.
+     */
     @FXML
     private void showAbout() {
         try {

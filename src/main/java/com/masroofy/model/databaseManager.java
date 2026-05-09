@@ -212,7 +212,6 @@ public class databaseManager {
      */
     public static ArrayList<Expense> getAllExpenses() {
         ArrayList<Expense> expensesList = new ArrayList<>();
-        // 1. ADDED 'id' TO THE SELECT QUERY
         String query = "select id, amount, category, timestamp from expenses";
 
         try (Connection conn = connection()) {
@@ -220,7 +219,6 @@ public class databaseManager {
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                // 2. GET THE ID FROM THE DATABASE
                 int id = rs.getInt("id");
 
                 double amount = rs.getDouble("amount");
@@ -230,7 +228,6 @@ public class databaseManager {
                 Expense e = new Expense(amount, cat);
                 e.setTimeStamp(LocalDate.parse(timeS));
 
-                // 3. SET THE ACTUAL DATABASE ID TO THE OBJECT
                 e.setId(id);
 
                 expensesList.add(e);
@@ -246,11 +243,12 @@ public class databaseManager {
      * @return A BudgetCycle object if data exists, or null if no cycle is configured.
      */
     public static BudgetCycle getCycleData() {
-        String query = "select allowance, startDate, endDate from budget_cycle";
-        try (Connection conn = connection()) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
+        String query = "select id, allowance, startDate, endDate from budget_cycle";
+        try (Connection conn = connection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            if (rs.next()) {
                 double allowance = rs.getDouble("allowance");
                 LocalDate start = LocalDate.parse(rs.getString("startDate"));
                 LocalDate end = LocalDate.parse(rs.getString("endDate"));

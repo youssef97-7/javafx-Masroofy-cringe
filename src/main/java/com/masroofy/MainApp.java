@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
+import javafx.scene.image.Image;
 
 import com.masroofy.model.databaseManager;
 
@@ -78,6 +79,8 @@ public class MainApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Image appIcon= new Image(getClass().getResourceAsStream("view/masroofy.png"));
+        primaryStage.getIcons().add(appIcon);
         databaseManager.initializeDatabase();
         
         BudgetCycle saved = databaseManager.getCycleData();

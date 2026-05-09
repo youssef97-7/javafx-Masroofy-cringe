@@ -7,6 +7,11 @@ import javafx.scene.control.*;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * Controller for the Settings view.
+ * Provides functionality for modifying the budget cycle dates, updating the total allowance,
+ * changing the security PIN, and performing a factory reset of the application data.
+ */
 public class SettingsController {
 
     @FXML private DatePicker startDatePicker;
@@ -16,28 +21,54 @@ public class SettingsController {
     @FXML private PasswordField newPinField;
     @FXML private PasswordField confirmPinField;
 
+    /** Logic to execute when returning to the dashboard. */
     private Runnable backToDashboardHandler;
+    /** Logic to execute after the budget cycle dates or allowance are modified. */
     private Runnable onCycleUpdatedHandler;
+    /** Logic to execute after the database has been completely cleared. */
     private Runnable onClearAllHandler;
 
+    /**
+     * Sets the callback for navigating back to the dashboard.
+     * @param handler The navigation logic.
+     */
     public void setBackToDashboardHandler(Runnable handler) {
         this.backToDashboardHandler = handler;
     }
 
+    /**
+     * Sets the callback for after a successful budget cycle update.
+     * @param handler The refresh logic.
+     */
     public void setOnCycleUpdatedHandler(Runnable handler) {
         this.onCycleUpdatedHandler = handler;
     }
 
+    /**
+     * Sets the callback for after a "Clear All" operation.
+     * @param handler The cleanup logic.
+     */
     public void setOnClearAllHandler(Runnable handler) {
         this.onClearAllHandler = handler;
     }
 
+    /**
+     * Populates the settings fields with existing budget cycle data.
+     *
+     * @param start     The current cycle start date.
+     * @param end       The current cycle end date.
+     * @param allowance The current total budget amount.
+     */
     public void setInitialData(LocalDate start, LocalDate end, double allowance) {
         startDatePicker.setValue(start);
         endDatePicker.setValue(end);
         allowanceField.setText(String.valueOf(allowance));
     }
 
+    /**
+     * Validates the user input and updates the budget cycle in the database.
+     * Triggers the update handler if the operation is successful.
+     */
     @FXML
     private void handleUpdateCycle() {
         try {
@@ -61,6 +92,10 @@ public class SettingsController {
         }
     }
 
+    /**
+     * Prompts the user for confirmation before wiping all application data
+     * from the database and resetting the UI state.
+     */
     @FXML
     private void handleClearAll() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -86,6 +121,10 @@ public class SettingsController {
         }
     }
 
+    /**
+     * Handles the logic for changing the user's security PIN, including validation
+     * of the current PIN and matching the new PIN confirmation.
+     */
     @FXML
     private void handleChangePin() {
         String currentInput = currentPinField.getText();
@@ -128,6 +167,13 @@ public class SettingsController {
         }
     }
 
+    /**
+     * Utility method to display various types of alerts to the user.
+     *
+     * @param type    The AlertType (Error, Information, etc.).
+     * @param title   The title of the alert window.
+     * @param content The message to be displayed.
+     */
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

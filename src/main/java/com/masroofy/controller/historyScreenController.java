@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
  * @version 2.0
  */
 public class historyScreenController {
-
-    // ── FXML bindings ────────────────────────────────────────────────────────
     @FXML private TableView<Expense>              tableHistory;
     @FXML private TableColumn<Expense, LocalDate> colDate;
     @FXML private TableColumn<Expense, String>    colCategory;
@@ -35,7 +33,6 @@ public class historyScreenController {
     @FXML private TextField                        txtSearch;
     @FXML private ComboBox<String>                 comboCategory;
 
-    // ── State ────────────────────────────────────────────────────────────────
     public  ObservableList<Expense> transactionHistory;
     private String  currentFilter    = "";
     private String  currentSortOrder = "Date";
@@ -45,8 +42,6 @@ public class historyScreenController {
     /** Called after any edit or delete to refresh the dashboard totals */
     private Runnable onUpdate;
 
-    // ── Dependency injection ─────────────────────────────────────────────────
-
     public void setExpenseManager(ExpenseManager manager) {
         this.expenseManager = manager;
     }
@@ -55,8 +50,10 @@ public class historyScreenController {
         this.onUpdate = onUpdate;
     }
 
-    // ── Initialization ───────────────────────────────────────────────────────
-
+    /**
+     * Initializes the controller. Sets up the table columns, category dropdown,
+     * and loads the initial data set.
+     */
     @FXML
     public void initialize() {
         comboCategory.getItems().addAll(
@@ -170,8 +167,6 @@ public class historyScreenController {
         });
     }
 
-    // ── Edit & Delete handlers ───────────────────────────────────────────────
-
     /**
      * Opens a dialog pre-filled with the selected expense's data.
      * If the user confirms, updates both the in-memory model and the database.
@@ -253,20 +248,21 @@ public class historyScreenController {
         Optional<ButtonType> result = confirm.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Remove from in-memory model
             if (expenseManager != null) {
                 expenseManager.deleteExpense(expense.getId());
             }
-
-            // Remove from database
             databaseManager.deleteExpense(expense.getId());
 
-            // Refresh table and dashboard
             display();
             if (onUpdate != null) onUpdate.run();
         }
     }
 
+    /**
+     * Displays a modal error alert to the user.
+     *
+     * @param message The error message to display.
+     */
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -275,14 +271,20 @@ public class historyScreenController {
         alert.showAndWait();
     }
 
-    // ── Display & Filtering ──────────────────────────────────────────────────
-
+    /**
+     * Retrieves all expense records from the database and refreshes the TableView.
+     */
     public void display() {
         ArrayList<Expense> data = databaseManager.getAllExpenses();
         transactionHistory = FXCollections.observableArrayList(data);
         tableHistory.setItems(transactionHistory);
     }
 
+    /**
+     * Filters the table items based on a specific category string.
+     *
+     * @param category The category name to filter by.
+     */
     public void applyFilter(String category) {
         this.currentFilter = category;
         if (category == null || category.equals("Category") || category.isEmpty()) {
@@ -296,32 +298,9 @@ public class historyScreenController {
         }
     }
 
-    public void applyDateRangeFilter(LocalDate startDate, LocalDate endDate) {
-        ObservableList<Expense> dateFiltered = transactionHistory.stream()
-                .filter(e -> !e.getTimestamp().isBefore(startDate)
-                        && !e.getTimestamp().isAfter(endDate))
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-        tableHistory.setItems(dateFiltered);
-    }
-
-    public void sortByDate(String order) {
-        this.currentSortOrder = order;
-        if (order.equalsIgnoreCase("Newest"))
-            transactionHistory.sort(Comparator.comparing(Expense::getTimestamp).reversed());
-        else
-            transactionHistory.sort(Comparator.comparing(Expense::getTimestamp));
-        tableHistory.refresh();
-    }
-
-    public void sortByAmount(String order) {
-        this.currentSortOrder = order;
-        if (order.equalsIgnoreCase("Highest"))
-            transactionHistory.sort(Comparator.comparingDouble(Expense::getAmount).reversed());
-        else
-            transactionHistory.sort(Comparator.comparingDouble(Expense::getAmount));
-        tableHistory.refresh();
-    }
-
+    /**
+     * Resets the category ComboBox to its default "Category" prompt text.
+     */
     private void resetComboBox() {
         comboCategory.setValue(null);
         comboCategory.setButtonCell(new ListCell<>() {
@@ -333,6 +312,9 @@ public class historyScreenController {
         });
     }
 
+    /**
+     * Resets all active filters and reloads the full dataset.
+     */
     @FXML
     public void clearFilters() {
         currentFilter = "Category";

@@ -62,6 +62,10 @@ public class BudgetCycle {
 
     }
 
+    public boolean reached80(){
+        return remainingAllowance/totalAllowance <= 0.2;
+    }
+
     /**
      * Retrieves the total number of days the cycle has been manually advanced.
      *

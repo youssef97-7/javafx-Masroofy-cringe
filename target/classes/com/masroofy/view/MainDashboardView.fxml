@@ -12,13 +12,13 @@
             <Separator />
 
             <Button fx:id="btnDashboard" maxWidth="Infinity" mnemonicParsing="false" onAction="#showDashboard" style="-fx-text-fill: white;" text="Dashboard" />
-            <Button fx:id="btnToggleTheme" maxWidth="Infinity" styleClass="theme-toggle" mnemonicParsing="false" onAction="#handleToggleTheme" style="-fx-text-fill: white;" text="🌙 Dark Mode" />
+            <Button fx:id="btnToggleTheme" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleToggleTheme" prefHeight="41.0" prefWidth="151.0" style="-fx-text-fill: white;" styleClass="theme-toggle" text="🌙 Dark Mode" />
             <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showSettings" style="-fx-text-fill: white;" text="Settings" />
             <Button fx:id="btnAnalytics" maxWidth="Infinity" mnemonicParsing="false" onAction="#showAnalytics" style="-fx-text-fill: white;" text="Analytics" />
             <Button fx:id="btnExport" maxWidth="Infinity" mnemonicParsing="false" onAction="#showExport" style="-fx-text-fill: white;" text="Export" />
             <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAbout" style="-fx-text-fill: white;" text="About" />
 
-            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" styleClass="action-button" style="-fx-text-fill: white;" text="advance -&gt;">
+            <Button mnemonicParsing="false" onAction="#handleforwardoneday" prefHeight="26.0" prefWidth="138.0" style="-fx-text-fill: white;" styleClass="action-button" text="advance -&gt;">
                 <font>
                     <Font name="Bell MT" size="14.0" />
                 </font>
@@ -44,7 +44,7 @@
 
                         <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0" />
 
-                        <StackPane  AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
+                        <StackPane AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
                             <fx:include fx:id="expenseView" source="ExpenseView.fxml" />
                         </StackPane>
 
@@ -55,7 +55,7 @@
                         </StackPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="exportPane" visible="false" style="-fx-background-color: -content-bg;">
+                <AnchorPane fx:id="exportPane" style="-fx-background-color: -content-bg;" visible="false">
                     <fx:include fx:id="exportView" source="ExportView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                 </AnchorPane>
             </children>

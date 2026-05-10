@@ -1,9 +1,3 @@
-================================================================================
-                         MASROOFY - Personal Expense Tracker
-                         CS251 Introduction to Software Engineering
-                         Cairo University, Faculty of Computers and AI
-================================================================================
-
 OVERVIEW
 --------
 Masroofy is a privacy-focused, offline-first personal finance tracker built

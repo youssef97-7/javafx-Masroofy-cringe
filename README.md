@@ -8,18 +8,18 @@ spending habits — all stored locally with no internet connection required.
 
 TEAM
 ----
-  Mohamed Ahmed Mohamed Mabrouk   (ID: 20240785)  20240785@stud.fci-cu.edu.eg
-  Youssef Mohamed Hassib           (ID: 20240707)  youssefhassib9771@gmail.com
-  Mohamed Mahmoud Mohamed Mahmoud  (ID: 20240527)  20240527@stud.fci-cu.edu.eg
-  Mahmoud Sherif Farouk            (ID: 20240552)  20240552@stud.fci-cu.edu.eg
+  Mohamed Ahmed Mohamed      --------------   (ID: 20240785)  
+  Youssef Mohamed Hassib     --------------   (ID: 20240707) 
+  Mohamed Mahmoud Mohamed    --------------   (ID: 20240527)  
+  Mahmoud Sherif Farouk      --------------   (ID: 20240552)
 
 
 TECH STACK
 ----------
-  Language  : Java
-  UI        : JavaFX (FXML-based views)
-  Database  : SQLite (via JDBC)
-  Architecture: MVC (Model-View-Controller)
+  Language     : Java
+  UI           : JavaFX (FXML-based views)
+  Database     : SQLite (via JDBC)
+  Architecture : MVC (Model-View-Controller)
 
 
 FEATURES
@@ -39,43 +39,43 @@ PROJECT STRUCTURE
 -----------------
   src/
     models/
-      Expense.java          -- Stores amount, category, and transaction date
-      Category.java         -- Defines labels for grouping expenses
-      BudgetCycle.java      -- Tracks timeframe, allowances, and period expenses
+      Expense.java                 -- Stores amount, category, and transaction date
+      Category.java                -- Defines labels for grouping expenses
+      BudgetCycle.java             -- Tracks timeframe, allowances, and period expenses
 
     controllers/
-      MainController.java           -- Dashboard: daily limit, pie chart, alerts
-      ExpenseController.java        -- Handles expense submission (Subject in Observer pattern)
-      AnalyticsController.java      -- Aggregates totals and pushes to charts
-      HistoryScreenController.java  -- Filters and displays transaction history
-      SetupController.java          -- Initial budget cycle setup
-      PinEntryController.java       -- PIN authentication screen
+      MainController.java          -- Dashboard: daily limit, pie chart, alerts
+      ExpenseController.java       -- Handles expense submission (Subject in Observer pattern)
+      AnalyticsController.java     -- Aggregates totals and pushes to charts
+      HistoryScreenController.java -- Filters and displays transaction history
+      SetupController.java         -- Initial budget cycle setup
+      PinEntryController.java      -- PIN authentication screen
 
     services/
-      DatabaseManager.java    -- All SQLite/JDBC logic; facade for all controllers
-      ExpenseManager.java     -- Central controller for transactions and cycles
-      BudgetCalculator.java   -- Daily limit, percentage, and rollover calculations
+      DatabaseManager.java         -- All SQLite/JDBC logic; facade for all controllers
+      ExpenseManager.java          -- Central controller for transactions and cycles
+      BudgetCalculator.java        -- Daily limit, percentage, and rollover calculations
 
-    App.java / Main.java      -- Entry point; launches JavaFX and initializes DB
+    App.java / Main.java           -- Entry point; launches JavaFX and initializes DB
 
   resources/
-    *.fxml                    -- JavaFX view definitions (one per screen)
+    *.fxml                         -- JavaFX view definitions (one per screen)
 
 
 ARCHITECTURE
 ------------
   The app uses a layered MVC architecture:
 
-    View   : .fxml files (JavaFX Scene Builder layouts)
-    Model  : Expense, Category, BudgetCycle, ExpenseManager, BudgetCalculator
-    Controller: MainController, ExpenseController, AnalyticsController,
-                HistoryScreenController, SetupController, PinEntryController
+    View       : .fxml files (JavaFX Scene Builder layouts)
+    Model      : Expense, Category, BudgetCycle, ExpenseManager, BudgetCalculator
+    Controller : MainController, ExpenseController, AnalyticsController,
+                 HistoryScreenController, SetupController, PinEntryController
 
   Design patterns applied:
-    - Facade    : DatabaseManager hides all SQL complexity from controllers
-    - Observer  : ExpenseController notifies MainController and HistoryScreen
-                  on every successful expense entry (via onUpdate callback)
-    - MVC       : Clean separation between UI, business logic, and persistence
+    - Facade   : DatabaseManager hides all SQL complexity from controllers
+    - Observer : ExpenseController notifies MainController and HistoryScreen
+                 on every successful expense entry (via onUpdate callback)
+    - MVC      : Clean separation between UI, business logic, and persistence
 
 
 SETUP & RUNNING
@@ -119,6 +119,7 @@ TOOLS USED
   - Draw.io     (architecture and sequence diagrams)
   - Google Docs (team collaboration tracker)
 
+
 PREBUILT EXECUTABLE (Windows)
 -----------------------------
   A prebuilt Windows executable is available in the repository:
@@ -128,6 +129,3 @@ PREBUILT EXECUTABLE (Windows)
   Simply double-click Masroofy.exe to launch the app — no Java or JavaFX
   installation required. The SQLite database file (masroofy.db) will be
   created automatically in the same directory on first run.
-================================================================================
-                            Version 1  |  April 2026
-================================================================================
